@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+Hack@Brown 2015
+{% endblock %}
+
+{% block headcss %}
+{{ super() }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.11.2/css/selectize.min.css"/>
+<!--<link rel="stylesheet" href="/static/jquery-ui-1.11.2.custom/jquery-ui.min.css"/>-->
+
+<link rel='stylesheet' href='/static/semantic-final/semantic.min.css' />
+<link rel='stylesheet' href='/static/css/day_of.css' />
+
+{% endblock %}
+
+{% block headjs %}
+{{ super() }}
+<script type="application/javascript" src="/static/semantic-final/semantic.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+{% if not bigboard %}
+<div id='header'>
+	<div id='header-content'>
+		<img src='/static/img/logo.png'/>
+		<h2>Hack@Brown</h2>
+		<div id='tabs'>
+			<a href='/info?dayof=1' data-tab='info'>Info</a>
+			<a href='/help?dayof=1' data-tab='help' class='mobile-button'>Help</a>
+			<a href='/resources?dayof=1' data-tab='resources'>Resources</a>
+			<a href='/schedule?dayof=1' data-tab='schedule'>Schedule</a>
+			<!--<a href='/mentors?dayof=1' data-tab='mentors'>Mentors</a>-->
+			<a href='/awards?dayof=1' data-tab='awards'>Awards</a>
+			<a href='/requests?dayof=1' data-tab='requests'>Requests for Help</a>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+<div class='hud' id='mrc'>
+	Thanks! We'll send you a mentor ASAP.
+</div>
+
+<div id='container' data-selected-tab='{{ tab }}'>
+	<script>
+	function selectTab(tab) {
+		$("[data-tab]").removeClass('selected');
+		$("[data-tab='" + tab + "']").addClass('selected');
+	}
+	selectTab($("#container").attr('data-selected-tab'));
+	
+	/*
+	// fetch new tabs via ajax:
+	$("#tabs a").click(function(e) {
+		var tab = $(e.target).attr('data-tab');
+		$("#tab-content").empty().load("/__day_of/" + tab + "?ajax=1");
+		selectTab(tab);
+		e.preventDefault();
+	})*/
+	</script>
+	
+	<div id='tab-content'>
+		{{ tab_content | safe }}
+	</div>
+</div>
+
+{% if tab == 'info' and bigboard %}
+<script>
+// auto-reload script
+var autoReloadTime = 20 * 1000 // 30 sec
+function autoReload() {
+	$("#tab-content").load("/info?ajax=1&dayof=1&bigboard=1");
+	setTimeout(autoReload, autoReloadTime);
+}
+setTimeout(autoReload, autoReloadTime);
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'/>
+	<title>Hack@Brown + Mama Kim's</title>
+	<link rel='stylesheet' href='/static/font/Brown/stylesheet.css'/>
+	<meta property="og:url" content="http://hackatbrown.org/mamakims"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:description" content="An exciting announcement from Hack@Brown.">
+	<meta property="og:image" content="http://hackatbrown.org/static/kims/og2.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	
+	<meta name="apple-mobile-web-app-title" content="Kimchi"/>
+	<link rel="apple-touch-icon" href="/static/kims/icon.png"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	
+	<style>
+	h1, h2, h3, h4 {
+		font-family: 'Brown';
+		font-weight: normal;
+		text-transform: uppercase;
+	}
+		
+		html, body {
+			height: 100%;
+			margin: 0;
+			
+			font-family: "Brown";
+		}
+		
+		.section {
+			height: 100%;
+			width: 100%;
+			display: table;
+		}
+		
+		.section > div {
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+		}
+		
+		.section > div > div {
+			max-width: 800px;
+			padding: 20px;
+			margin: auto;
+		}
+		
+		.green {
+			background-color: #5cc1c3;
+			color: white;
+		}
+		
+		.red {
+			background-color: #ee5d94;
+			color: white;
+		}
+		
+		.hex {
+			background-image: linear-gradient(rgba(255,255,255,0), white), url("/static/img/svgtriangles/trigrid-tile-5pct.svg");
+			background-size: 100%, 107.2px 120px;
+			background-position: center top;
+		}
+		
+		img {
+			max-width: 100%;
+		}
+		
+		.shadowed {
+			width: 500px;
+			border: 3px solid white;
+			box-shadow: 0px 2px 3px gray;
+		}
+		
+		.apps {
+			width: 500px;
+		}
+		
+		.disclaimer {
+			font-size: small;
+			opacity: 0.5;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class='section green'>
+		<div>
+			<div>
+				<p>
+					<img style='width: 500px' src='/static/kims/plus.png'/>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class='section hex'>
+		<div>
+			<div>
+				<h1>Dreams.</h1>
+				<p>
+					Hack@Brown is about achieving dreams. As we come into our third year, we had to ask ourselves:
+				</p>
+				<h2>What are our dreams?</h2>
+				<p>
+					And we realized something. It isn't about teaching students computer science. It's not about bringing together designers, developers and students of the humanities together in harmonious collaboration in pursuit of greater good through technology. It's about something that's fundamental to Brown CS, very near and dear to our hearts.
+				</p>
+				<h2>It's about food.</h2>
+				<p>Today, we're re-aligning our organization with our true fundamental vision:</p>
+				<h2>food deserves to be free</h2>
+				<p>It's about Andy Van Dam's original dream for the CIT: an East Asian food restaurant, for every student, for every class.</p>
+			</div>
+		</div>
+	</div>
+	<div class='section red'>
+		<div>
+			<div>
+				<img style='width: 500px' src='/static/kims/herald.png'/>
+				<h1>We're acquiring Mama Kim's.</h1>
+				<h3>And we're building some great things with it.</h3>
+			</div>
+		</div>
+	</div>
+	<div class='section hex'>
+		<div>
+			<div>
+				<img class='shadowed' src='/static/kims/kims.png' />
+				<p class='disclaimer'>(Artist rendering)</p>
+				<h1>Mama Kim's has a new home.</h1>
+			</div>
+		</div>
+	</div>
+	<div class='section red'>
+		<div>
+			<div>
+				<h1>Say goodbye to Push for Pizza.</h1>
+					<img class='apps' src='/static/kims/apps.png'/>
+					<h3>Say hello to our brand-new suite of on-demand Korean cuisine apps.</h3>
+					<p><img src='/static/kims/appstore.svg'/></p>
+			</div>
+		</div>
+	</div>
+	<div class='section green'>
+		<div>
+			<div>
+				<h1>Introducing the CIT meal plan.</h1>
+					<img class='shadowed' src='/static/kims/mealplans.png'/>
+				<p>No flex points, no meal credits, unlimited Mama Kim's, Kabob and Curry and pizza. For $17.00 a year. Please don't skip the tech talks.</p>
+			</div>
+		</div>
+	</div>
+	<div class='section hex'>
+		<div>
+			<div>
+				<h1>Coming Fall 2015.</h1>
+		
+				<div id="fb-root"></div>
+				<script>(function(d, s, id) {
+				  var js, fjs = d.getElementsByTagName(s)[0];
+				  if (d.getElementById(id)) return;
+				  js = d.createElement(s); js.id = id;
+				  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=280031018856571&version=v2.3";
+				  fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script>
+		
+				<div class="fb-like" data-href="https://hackatbrown.org/mamakims" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>
+			</div>
+		</div>
+	</div>
+	
+	<!--BEGIN KIMCHI APP-->
+	<style>
+	#kimchi {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		padding: 20px;
+		box-sizing: border-box;
+	}
+	#kimchi img {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+	}
+	#kimchi h1, #kimchi h2 {
+		font-family: "Cochin-BoldItalic";
+		color: red;
+		text-transform: none;
+		margin: 5px;
+	}
+	#kimchi h1 {
+		font-size: 3em;
+	}
+	
+	#button {
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		top: 50%;
+		margin-top: -50px;
+		left: 50%;
+		margin-left: -50px;
+		z-index: 10;
+		background-size: contain;
+	}
+	#button.up {
+		background-image: url(/static/kims/button.png);
+	}
+	#button.down {
+		background-image: url(/static/kims/buttonDown.png);
+	}
+	</style>
+	<div id='kimchi' style='display: none'>
+		<h2>klick for</h2>
+		<h1>kimchi</h1>
+		
+		<div id='button' class='up'></div>
+		<img src='/static/kims/buttonDown.png' style='display: none'/>
+		
+		<img src='/static/kims/mascot.png'/>
+	</div>
+	<script>
+	if (window.navigator.standalone) {
+		var sections = document.querySelectorAll('.section');
+		for (var i=0; i<sections.length; i++) {
+			sections[i].style.display = 'none';
+		}
+		document.getElementById('kimchi').style.display = 'block'
+		
+		document.body.addEventListener('touchmove', function(event) {
+		       event.preventDefault();
+		    }, false);
+		
+	}
+	
+	var button = document.getElementById('button');
+	button.addEventListener('touchstart', function(e) {
+		e.preventDefault()
+		button.className = 'down';
+	})
+	button.addEventListener('touchend', function(e) {
+		e.preventDefault()
+		button.className = 'up';
+		order();
+	})
+	
+	function order() {
+		navigator.geolocation.getCurrentPosition(function() {
+			alert("Kool! Your kimchi will kome kuickly!");
+		});
+	}
+	</script>
+</body>
+</html>

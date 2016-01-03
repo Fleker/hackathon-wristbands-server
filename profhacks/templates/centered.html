@@ -1,0 +1,66 @@
+{# a generic centered page #}
+
+{% extends "base.html" %}
+
+{% block head %}
+
+{{ super() }}
+
+<style>
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+body > div {
+	height: 100%;
+	width: 100%;
+	display: table;
+}
+body > div > div {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+body > div > div > div {
+	padding: 1em;
+	max-width: 700px;
+	display: inline-block;
+	text-align: center;
+}
+
+body {
+    background-image: url(/static/img/svgtriangles/trigrid-tile-5pct.svg);
+    background-size: 107.2px 120px;
+    background-position: center top;
+    width: 100%;
+    top: 0;
+}
+
+a:link, a:visited {
+   color: #EF5D93;
+}
+
+h1 {
+   text-transform: uppercase;
+   color: #EF5D93;
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div id="main">
+	<div>
+		<div>
+	      {% block centered_content %}
+			
+	      {% endblock %}
+		</div>
+ </div>
+</div>
+
+{% endblock %}

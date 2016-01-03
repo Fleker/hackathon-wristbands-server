@@ -1,0 +1,351 @@
+{% extends "base.html" %}
+<meta name="google-site-verification" content="8amEw5Q6dS-QfPNyzYUp6R-dAxIuWOFImpMrev7mE7c" />
+<!--hello@hackatbrown.org verification-->
+
+{% block title %}
+ProfHacks 2016 &mdash; March 12&ndash;13, Rowan University
+{% endblock %}
+
+{% block headcss %}
+{{ block.super }}
+<link rel='stylesheet' href='/static/semantic/minified/collections/form.min.css' />
+<!--<link rel='stylesheet' href='/static/semantic-final/components/form.min.css' />-->
+<link rel='stylesheet' href='/static/semantic-final/components/icon.min.css' />
+<link rel='stylesheet' href='/static/semantic-final/components/input.min.css' />
+<link rel='stylesheet' href='/static/semantic/minified/collections/grid.min.css' />
+
+<link rel="stylesheet" href="/static/css/select2.css"/>
+<link rel='stylesheet' href='/static/css/index.css'/>
+<link rel='stylesheet' href='/static/css/component.css'/>
+<link rel='stylesheet' href='/static/css/registration.css'/>
+{% if registration_status == "sign_up_for_updates" %}
+<link rel='stylesheet' href='/static/css/index-supdates.css'/>
+{% endif %}
+{% if registration_status == "registration_closed" %}
+<link rel='stylesheet' href='/static/semantic-final/components/button.min.css'/>
+{% endif %}
+{% endblock %}
+
+{% block headjs %}
+{{ block.super }}
+
+{% endblock %}
+
+{% block head %}
+{{ block.super }}
+
+{% endblock %}
+
+{% block nav %}
+<div class="hamburger">
+    <svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+        <g class="hamsvg" sketch:type="MSLayerGroup">
+            <rect class="bar" fill="#404040" sketch:type="MSShapeGroup" x="0" y="25" width="30" height="5"></rect>
+            <rect class="bar" fill="#404040" sketch:type="MSShapeGroup" x="0" y="12.5" width="30" height="5"></rect>
+            <rect class="bar" fill="#404040" sketch:type="MSShapeGroup" x="0" y="0" width="30" height="5"></rect>
+        </g>
+    </svg>
+</div>
+<div class="hamburger over"></div>
+<ul class="top-bar_ul" data-0="" data-1="">
+    <li class="top-bar_li left cancel_reg" id="back_top"><a class="secondary">Cancel</a></li>
+    <li class="top-bar_li active" id="hello_top"><a href="#hero">Hello</a></li>
+    <li class="top-bar_li" id="schedule_top"><a href="#about">About</a></li>
+    <li class="top-bar_li" id="schedule_top"><a href="#schedule">Schedule</a></li>
+    <li class="top-bar_li" id="sponsors_top"><a href="#sponsors">Sponsors</a></li>
+    <li class="top-bar_li" id="faq_top"><a href="#faq">FAQ</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+{% include "social.html" %} <!-- necessary to support like buttons, etc -->
+
+<div class="fader"></div>
+
+<div id="skrollr-body" class="container">
+
+    <section id='hero' class="splash panel">
+        <div class="double">
+            <div class="double_left">
+                <div class='logo'></div>
+                <div class='title'>ProfHacks<span class='light'>2016</span></div>
+                <div class='datetime light'>
+                    <h2>March 12&ndash;13 &bull; Glassboro, NJ &bull;</h2>
+                </div>
+                
+                <div class='slogan'>Enter the physical web</div>
+                
+                
+                {% if registration_status == "sign_up_for_updates" %}
+                <form id='sign-up-for-updates' action='/sign_up_for_updates' method='POST'>
+                    <input class='main_cta' type='email' name='email' id='email' placeholder='subscribe for updates' required/>
+                </form>
+                {% endif %}
+                {% if registration_status == "registration_open" %}
+                <form id="registration_email" action="/__check_registered" class="init_reg" novalidate>
+                    <input type="email" name="email" placeholder="EMAIL" class="init_input" required/>
+                    <input type="submit" value="REGISTER" class="init_submit light" />
+                </form>
+                {% endif %}
+                
+                {% if registration_status == "registration_closed" %}
+                <style>
+                    input[type=submit] {
+                        background-color: #918f8c !important;
+                        border: 2px solid #918f8c !important;
+                        cursor: not-allowed !important;
+                    }
+                </style>
+                <form class="init_reg">
+                    <input type="submit" value="REGISTRATION CLOSED" class="init_submit light" disabled/>
+                </form>
+                {% endif %}
+                
+                 <div class='down_arrow'></div>
+                
+            </div>
+
+            {% if registration_status == "registration_open" %} 
+                {% include "registration_form.html" %}
+            {% endif %}
+        </div>
+        <canvas id="hero_canvas"></canvas>
+    </section>
+    
+    <div id="panels" class="panels">
+        <section class="panel triangle about">
+            <div class="foreground content_container">
+                <div>
+                    <article id='about'>
+                        <h1>A different kind of hackathon.</h1>
+                        <p>Get ready for a weekend full of learning new technologies, making great friends, and pushing your limits. 
+                        We’ll provide plenty of healthy food, awesome swag, and everything you need to carry out your craziest ideas.</p>
+                        <h1 class="blue">Everyone is welcome.</h1>
+                        <p>Whether you’re making your first website, hardware hacking with an Arduino, or starting with design, Hack@Brown is for you. We’ll have great workshops, mentors from Oracle, Dropbox, Google (and more!), and most importantly, the perfect atmosphere for learning something new.</p>
+                        <p>Ready? Let's go.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel triangle schedule verbose">
+            <div class="foreground content_container">
+                <div>
+                    <article id="schedule" class="schedule-text">
+                        <div class="day saturday">
+                            <h1>Saturday</h1>
+                            <h2>Registration<span>9:00&ndash;11:00</span></h2>
+                            <p>Check-in at Sayles Hall</p>
+                            <h2>Introduction and Kick-off! <span>11:00&ndash;12:00</span></h2>
+                            <p>Head to Salomon Auditorium</p>
+                            <h2>Lunch <span>12:00&ndash;1:00</span></h2>
+                            <p>Eat, mingle, brainstorm. Sponsored by Two Sigma</p>
+                            <h2>Hacking Begins <span>1:00</span></h2>
+                            <p>Work time with snacks and mentor support throughout</p>
+                            <h2>Dinner <span>6:00&ndash;7:00</span></h2>
+                            <p>Sponsored by Teespring</p>
+                            <h2>Midnight Snack <span>12:00&ndash;1:00</span></h2>
+                            <p>Sponsored by Oracle</p>
+                            <br>
+                            <p>Continue hacking... sleeping areas will be plentiful!</p>
+                        </div>
+                        <div class="day sunday">
+                            <h1>Sunday</h1>
+                            <h2>Breakfast<span>8:00&ndash;9:00</span></h2>
+                            <h2>Project submissions due!<span>12:00</span></h2>
+                            <h2>Lunch + Demo Fair<span>12:00&ndash;2:00</span></h2>
+                            <p>Demos will be conducted in two parts. Judges will visit teams in Sayles Main Hall for informal demos while other teams get lunch. After one hour, teams will swap.  Feel free to check out other teams' projects!</p> <p>Lunch is sponsored by Microsoft</p>
+                            <h2>Finalists Announced<span>2:00</span></h2>
+                            <h2>Closing Ceremony<span>2:00&ndash;3:30</span></h2>
+                            <p>Keynote, final demos, winners announced</p>
+                            <h2>Goodbye! <span>4:00</span></h2>
+                            <p>Clean up, pack, and say bye to (old and new) friends!</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel triangle sponsors">
+            <div class="foreground content_container">
+                <div>
+                    <article id='sponsors'>
+                        <h1>Our Thanks</h1>
+                        <p>To the companies that make this possible!</p>
+                        <h2 class="peta">Peta Sponsor</h2>
+                        <div class="sponsor-row peta">
+                            <a href="http://oracle.com" target="_blank">
+                                <img src="/static/img/sponsor-logos/oracle.png" alt="Oracle">
+                            </a>
+                        </div>
+                        <h2 class="tera">Tera Sponsors</h2>
+                        <div class="sponsor-row tera">
+                            <a href="http://twosigma.com" target="_blank">
+                                <img src="/static/img/sponsor-logos/twosigma.png" alt="Two Sigma">
+                            </a>
+                            <a href="http://teespring.com" target="_blank">
+                                <img src="/static/img/sponsor-logos/teespring.png" alt="Teespring">
+                            </a>
+                            <a href="http://microsoft.com" target="_blank">
+                                <img src="/static/img/sponsor-logos/microsoft.png" alt="Microsoft">
+                            </a>
+                        </div>
+                        <h2 class="giga">Giga Sponsors</h2>
+                        <div class="sponsor-row giga">
+                            <a href="http://dropbox.com" target="_blank">
+                                <img src="/static/img/sponsor-logos/dropbox.png" alt="Dropbox">
+                            </a>
+                            <a href="http://kayak.com" target="_blank">
+                                <img src="/static/img/sponsor-logos/kayak.png" alt="KAYAK">
+                            </a>
+                            <a href="http://palantir.com" target="_blank">
+                                <img src="/static/img/sponsor-logos/palantir.png" alt="Palantir">
+                            </a>
+                            <a href="http://akamai.com" target="_blank">
+                                <img id="akamai" src="/static/img/sponsor-logos/akamai.png" alt="Akamai">
+                            </a>
+                            <a href="http://tripadvisor.com" target="_blank">
+                                <img id="tripadvisor" src="/static/img/sponsor-logos/tripadvisor.png" alt="TripAdvisor">
+                            </a>
+                            <a href="http://pmd.com" target="_blank">
+                                <img id="pmd" src="/static/img/sponsor-logos/pmd.png" alt="pMD">
+                            </a>
+                        </div>
+                        <h2 class="mega">Mega Sponsors</h2>
+                        <div class="sponsor-row mega">
+                            <a href="http://facebook.com" target="_blank">
+                                <img id="facebook" src="/static/img/sponsor-logos/facebook.png" alt="Facebook">
+                            </a>
+                            <a href="http://google.com" target="_blank">
+                                <img id="google" src="/static/img/sponsor-logos/google.png" alt="Google">
+                            </a>
+                            <a href="http://www.lyft.com/" target="_blank">
+                                <img id="lyft" src="/static/img/sponsor-logos/lyft.png" alt="Sailthru">
+                            </a>
+                            <a href="http://sailthru.com" target="_blank">
+                                <img id="sailthru" src="/static/img/sponsor-logos/sailthru.png" alt="Sailthru">
+                            </a>
+                            <a href="http://sig.com" target="_blank">
+                                <img id="sig" src="/static/img/sponsor-logos/sig.png" alt="SIG">
+                            </a>
+                            <a href="http://swipely.com" target="_blank">
+                                <img src="/static/img/sponsor-logos/swipely.png" alt="Swipely">
+                            </a>
+                            <a href="http://uber.com" target="_blank">
+                                <img id="uber" src="/static/img/sponsor-logos/uber.png" alt="Uber">
+                            </a>
+                        </div>
+                        <h2 class="kilo">Kilo Sponsors</h2>
+                        <div class="sponsor-row kilo">
+                            <a href="http://mongodb.com" target="_blank">
+                                <img id="mongodb" src="/static/img/sponsor-logos/mongodb.png" alt="MongoDB">
+                            </a>
+                            <a href="http://bowery.io" target="_blank">
+                                <img id="bowery" src="/static/img/sponsor-logos/bowery.png" alt="Bowery">
+                            </a>
+                            <a href="http://retailmenot.com" target="_blank">
+                                <img src="/static/img/sponsor-logos/retailmenot.png" alt="RetailMeNot">
+                            </a>
+                            <a href="http://cimpress.com" target="_blank">
+                                <img src="/static/img/sponsor-logos/cimpress.png" alt="Cimpress">
+                            </a>
+                            <a href="http://thalmic.com" target="_blank">
+                                <img id="thalmic-labs" src="/static/img/sponsor-logos/thalmiclabs.png" alt="Thalmic Labs">
+                            </a>
+                            <a href="http://spark.io" target="_blank">
+                                <img id="spark" src="/static/img/sponsor-logos/spark.png" alt="Spark">
+                            </a>
+                            <a href="http://tessel.io" target="_blank">
+                                <img id="tessel" src="/static/img/sponsor-logos/tessel.png" alt="Tessel">
+                            </a>
+                        </div>
+                        <h2>Partners</h2>
+                        <div class="sponsor-row special">
+                            <a href="http://cs.brown.edu/" target="_blank">
+                                <img src="/static/img/sponsor-logos/browncs.png" alt="Brown Computer Science">
+                            </a>
+                            <a href="http://mlh.io/" target="_blank">
+                                <img src="/static/img/sponsor-logos/mlh.png" alt="Major League Hacking">
+                            </a>
+                        </div>
+                        <p>Interested in sponsoring? <a href="/static/sponsorship.pdf">More details here.</a></p>
+                    </article>
+                </div>
+            </div>
+
+        </section>
+
+        <section class='panel triangle faq verbose'>
+            <div class='foreground content_container'>
+                <div>
+                    <article id='faq'>
+                        <div>
+                            <h1>FAQ</h1>
+                            <h2>Who can attend?</h2>
+                            <p>All undergraduate, graduate, and high school students from any school are welcome. If you are under 18, we’ll need a parental consent form.</p>
+
+                            <h2>Will there be a standby line the day of the event?</h2>
+                            <p>Yes, there will be a standby line if accepted attendees do not show up. The line will open up when registration starts and students will be admitted off the standby line after registration ends. We will first admit all Brown/RISD students and then admit non-Brown/RISD students by order of first come first serve. Students admitted off the standby line will not get a travel reimbursement.</p>
+
+                            <h2>How will you decide between applicants?</h2>
+                            <p>Applicants will be chosen based on a random lottery. Everyone is welcome to apply and attend!</p>
+
+                            <h2>Why, then, do you need my resume?</h2>
+                            <p>Resumes are completely optional, and are passed on to sponsoring companies for recruitment only if you’re admitted. They're in no way linked to the hackathon acceptance process, which will remain a random lottery.</p>
+
+                            <h2>How much is this going to cost me?</h2>
+                            <p>Hack@Brown is completely free, including food, drinks, and awesome swag.</p>
+
+                            <h2>How do I get there?</h2>
+                            <p>You can take Amtrak or the MBTA to Providence Station, a short walk from campus. We’re working on getting travel reimbursements and buses set-up for you! Hack@Brown will take place in Sayles & Wilson Halls at Brown University.</p>
+
+                            <h2>What about team sizes?</h2>
+                            <p>You’re welcome to have up to four people on a team. It is absolutely not necessary to have a team prior to coming to Hack@Brown&mdash;we’ll have a fun team-forming session at the beginning.</p>
+
+                            <h2>What should I bring?</h2>
+                            <p>Your valid student ID, laptop, phone, chargers, sleeping equipment, and lots of excitement. If you’re a minor, a parental consent form too that we’ll email to you.</p>
+
+                            <h2>I have a question that's not answered here! </h2>
+                            <p>We’re here for you! Send us an email at <a href="mailto:hello@hackatbrown.org">hello@hackatbrown.org</a> or feel free to reach out to us on <a href="http://twitter.com/hackatbrown">Twitter</a> or <a href="http://facebook.com/hackatbrown">Facebook</a>.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <section class="panel triangle footer">
+            <div class="foreground content_container"><div>
+            <footer>
+                <span class="copyright">Copyright &copy; 2016 ProfHacks</span>
+                <a class="press" href="http://2015.hackatbrown.org/press">Press</a>
+                <a class="coc" href="/static/code-of-conduct.pdf">Code of Conduct</a>
+
+                <ul class="social-links">
+                    <li><a href="mailto:hello@hackatbrown.org" title="Email" class="email" target="_blank"></a></li>
+                    <li><a href="http://facebook.com/hackatbrown" title="Facebook" class="facebook" target="_blank"></a></li>
+                    <li><a href="http://twitter.com/hackatbrown" title="Twitter" class="twitter" target="_blank"></a></li>
+                    <li><a href="http://medium.com/hack-at-brown" title="Blog" class="blog" target="_blank"></a></li>
+                </ul>
+            </footer>
+            </div></div>
+        </section>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+<script type="text/javascript" src="/static/js/hero.js"></script>
+
+<script type="text/javascript" src='/static/js/gutabslider.js'></script>
+<script type="text/javascript" src="/static/js/skrollr.js"></script>
+
+<!--These are only for the registration form, so we can load them here-->
+<script type="text/javascript" src='/static/semantic/minified/modules/behavior/form.min.js'></script>
+<script type="text/javascript" src="/static/js/condor.js"></script>
+<script type="text/javascript" src="/static/js/select2.min.js"></script>
+
+<script type="text/javascript" src='/static/js/index.js'></script>
+
+<!--Needed to avoid webkit repaint issues-->
+<style></style>
+{% endblock %}
