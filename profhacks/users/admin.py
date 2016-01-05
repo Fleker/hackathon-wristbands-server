@@ -53,9 +53,17 @@ class UserAdmin(AuthUserAdmin):
         ('Custom Data',
                 {'fields':
                     ('resume',
-                     'sms_notifications',
                      'teammates',
-                     'first_hackathon',),
+                     'journalism',
+                     'smart_buildings',
+                     'quantified_self',
+                     'first_hackathon',
+                     'sms_notifications',),
+                }
+         ),
+        ('Internal Use',
+                {'fields':
+                    ('status',),
                 }
          )
     )

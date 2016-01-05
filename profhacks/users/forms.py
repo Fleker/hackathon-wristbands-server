@@ -2,8 +2,28 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Div
 
+class ResumeUploadForm(forms.Form):
+    resume  = forms.FileField()
+    
+    def __init__(self, *args, **kwargs):
+        super(ResumeUploadForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = 'resume_upload'
+        self.helper.form_class = 'upload-control'
+        self.helper.form_method = 'post'
+        self.helper.form_action = 'upload_resume/'
+        self.helper.layout = Layout(
+            Div(
+                'resume',
+                css_class = 'resume-upload upload ui button',
+            ),
+            Div(
+                Submit('submit', 'Upload', css_class='button white')
+            )
+        )
+
 class InfoForm(forms.Form):
-    team = forms.CharField(
+    teammates = forms.CharField(
         label = "Any friends you'd like to work with?",
         max_length = 255,
         required = False,
@@ -47,7 +67,7 @@ class InfoForm(forms.Form):
         self.helper.form_method = 'post'
         self.helper.form_action = 'update_info/'
         self.helper.layout = Layout(
-            'team',
+            'teammates',
             'journalism',
             'smart_buildings',
             'quantified_self',

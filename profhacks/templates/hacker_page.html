@@ -114,34 +114,23 @@
                     <div class="inner_container">
                         <h4 class="label grey">Messages</h4>
                         <div class="message_container">
-                        {% if not resume %}
                         <div class="message items">
                             <div class="message item prompt">
-                                <h3>You haven't uploaded your resume yet!</h3>
+                                <h3>If you havn't, upload your resume!</h3>
                                 <p>We give our sponsors your resume for potential recruitment opportunities.</p>
                                 <div class="actions">
                                     <div class="field">
                                         <div class="upload-control">
-                                            <div id="resume-over" class="resume-upload upload ui button" onclick="document.getElementById('resume').click()">
-                                                {% if resume %}
-                                                <span>Re-upload</span>
-                                                {% else %}
-                                                <span>Upload Resume</span>
-                                                {% endif %}
-                                            </div>
-                                            <div class="view-resume file-name">
-                                                {% if resume %}
-                                                <a href='/__serve/{{ hacker.resume }}' target="_blank" download="{{resumeFileName}}">{{resumeFileName}}</a>
-                                                {% else %}
-                                                <span>No file chosen.</span>
-                                                {% endif %}
-                                            </div>
+                                            <a href="https://www.dropbox.com/request/7X3R66Hc6du480W0BRNM">
+                                                <div id="resume-over" class="resume-upload upload ui button">
+                                                    <span>Upload</span>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {% endif %}
                         </div>
                     </div>
                 </section>
@@ -175,69 +164,12 @@
 <script type="text/javascript" src="/static/js/jquery.maskMoney.min.js"></script>
 
 <script>
-  var secret = "{{ hacker.secret }}";
-  var status = "{{ status }}";
-  var receipts = "{{ hacker.receipts }}";
-  var rmax = "{{hacker.rmax}}";
-  var deadline = "{{deadline}}";
-
-    var container,
-        msnry;
 
   $(document).ready(function () {
-
-    messagesCheckNone();
-
-    if (receipts == "None") {
-        toggleReimbursementForm(false);
-    }
-
-    $('#delete-button').click(function() {
-        confirmDeleteHacker(secret);
-    });
-
-    $('#rsvp-button').click(function() {
-        rsvp(secret);
-    });
-
-      $(".delete-receipt").click(function() {
-          deleteFile(this.parentNode.parentNode, 'receipts');
-      });
 
     if (location.hash === '#info') {
       setTabActive($("#info_top"));
       switchPanes(1);
-    }
-
-    if (status == "accepted" || status == "confirmed" || status == "checked in") {
-        if (location.hash === '#reimbursements') {
-          setTabActive($("#reimbursements_top"));
-          switchPanes(2);
-        }
-
-        $("#reimbursements_top").click(function () {
-          this.preventDefault;
-          setTabActive(this);
-          switchPanes(2);
-        });
-
-        $("#reimbursements-modal").click(function () {
-            this.preventDefault;
-            $("#rsvp-modal .no").click();
-            setTabActive($("#reimbursements_top"));
-            switchPanes(2);
-        });
-
-        $("#rsvp-link").click(function () {
-          this.preventDefault;
-          setTabActive($("#status_top"));
-          switchPanes(0);
-        });
-
-        if (status == "accepted") {
-            $('.reciepts-section').hide();
-        }
-
     }
 
     $("#status_top").click(function () {
@@ -252,293 +184,11 @@
       switchPanes(1);
     });
 
-
     initalizeNavMenu('.top-bar_ul');
-
-    //    Form stuff. Needs to stay in the html for jinja to do its thing
-    $(".form :input:not(.tags-input)").not('#reimbursement-needed').change(function () {
-        saveChange(this.name, this.value, this.parentNode, secret, true);
-    });
-
-    var debouncedSaveChange = _.debounce(saveChange, 2000);
-    $(".tags-input, #reimbursement-needed").change(function () {
-        debouncedSaveChange(this.name, this.value, this.parentNode, secret, true);
-    });
-
-
-    //Year Section
-      var $year = $('#year').val("{{ hacker.year }}").selectize({
-          create: false,
-          hideSelected: true,
-          onDropdownOpen: slideOut,
-          onDropdownClose: slideIn,
-      });
-    var year = $year[0].selectize;
-    var $yearLabel = $year.parent().siblings("label");
-
-    $yearLabel.click(function() {
-      year.focus();
-    });
-
-    //Dietary Restrictions Section
-      var rawDiet = {% include "data/dietary-restrictions.json" %};
-    var dietaryRestrictionsData = [];
-    $.each(rawDiet, function (key, val) {
-        dietaryRestrictionsData.push({"diet" : val});
-    });
-
-    var $dietaryRestrictions = $('#dietary_restrictions').selectize({
-      valueField: 'diet',
-      labelField: 'diet',
-      searchField: ['diet'],
-      delimiter: ',',
-      persist: false,
-      hideSelected: true,
-      options: dietaryRestrictionsData,
-      onDropdownOpen: slideOut,
-      onDropdownClose: slideIn,
-        create: true,
-        createOnBlur: true,
-//      create: function (input) {
-//        return {
-//          value: input,
-//          text: input
-//        }
-//      }
-    });
-
-    var dietaryRestrictions = $dietaryRestrictions[0].selectize;
-    var $dietaryRestrictionsLabel = $dietaryRestrictions.parent().siblings("label");
-
-    $dietaryRestrictionsLabel.click(function() {
-        dietaryRestrictions.focus();
-    })
-
-    //Teammates Section
-
-    var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
-      '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
-
-
-    var $teammates = $('#teammates').selectize({
-      labelField: 'email',
-      valueField: 'email',
-      searchField: 'email',
-      delimiter: ',',
-      maxItems: 3,
-      persist: true,
-      hideSelected: true,
-      onDropdownOpen: slideOut,
-      onDropdownClose: slideIn,
-      createFilter: function (input) {
-        var match, regex;
-
-        // email@address.com
-        regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-        match = input.match(regex);
-        if (match) return !this.options.hasOwnProperty(match[0]);
-
-        // name <email@address.com>
-        regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-        match = input.match(regex);
-        if (match) return !this.options.hasOwnProperty(match[2]);
-
-        return false;
-      },
-      create: function (input) {
-        if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-          return {
-            email: input
-          };
-        }
-        var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-        if (match) {
-          $teammates.find("input").focus();
-          return {
-            email: match[2],
-            name: $.trim(match[1])
-          };
-        }
-        alert('Invalid email address.');
-        return false;
-      }
-    });
-
-    var teammates = $teammates[0].selectize;
-    var $teammatesLabel = $teammates.parent().siblings("label");
-
-    $teammatesLabel.click(function() {
-        teammates.focus();
-    });
-
-    //Shirt Size Section
-    // Populate the radio buttons
-    populateDefaultRadio("shirt_gen", "{{ hacker.shirt_gen }}");
-    populateDefaultRadio("shirt_size", "{{ hacker.shirt_size }}");
-    populateDefaultRadio("hardware_hack", "{{ hacker.hardware_hack }}");
-    populateDefaultRadio("first_hackathon", "{{ hacker.first_hackathon }}");
-
-    //School Section
-    /* Autocomplete suggestions for schools TODO */
-//    var universities = [];
-//    $.getJSON("/static/data/universities.json", function (data) {
-//      $.each(data, function (key, val) {
-//        universities[key] = val;
-//      })
-//    });
-//
-//    $(".schools").autocomplete({
-//      source: universities
-//    });
-      var schools = {% include "data/universities.json" %};
-
-      var $school = $('#school').selectize({
-          valueField: 'label',
-          labelField: 'label',
-          searchField: ['label'],
-          maxItems: 1,
-          persist: false,
-          hideSelected: true,
-          options: schools,
-          onDropdownOpen: slideOut,
-          onDropdownClose: slideIn,
-          create: true,
-          createOnBlur: true,
-//          create: function (input) {
-//              return {
-//                  label: input,
-//                  domain: ""
-//              }
-//          }
-      });
-
-      var school = $school[0].selectize;
-      var $schoolLabel = $school.parent().siblings("label");
-
-      $school.click(function() {
-          school.focus();
-      })
-		
-		// Major Section
-		var majors = {% include "data/majors.json" %};
-      
-      var majorsData = [];
-      $.each(majors, function (key, val) {
-          majorsData.push({"major" : val});
-      });
-
-      var $major = $('#major').selectize({
-          valueField: 'major',
-          labelField: 'major',
-          searchField: ['major'],
-          delimiter: ',',
-          persist: false,
-          hideSelected: true,
-          options: majorsData,
-          onDropdownOpen: slideOut,
-          onDropdownClose: slideIn,
-          create: true,
-          createOnBlur: true,
-//          create: function (input) {
-//              return {
-//                  value: input,
-//                  text: input
-//              }
-//          }
-      });
-
-      var major = $major[0].selectize;
-      var $majorLabel = $major.parent().siblings("label");
-
-      $major.click(function() {
-          major.focus();
-      })
-		
-    //Links Section
-
-    // Split the links into an array
-    var linkArray = processCSV("{{ hacker.links }}");
-
-    //Repeater list
-    var $linkRepeater = $(".condor").condor({
-      uniqueNames: false,
-      namePrefix: 'links',
-      activeHint: 'Github, Dribbble, Behance, etc.',
-      inactiveHint: 'add another link',
-      inputType: 'url',
-      prepopulate: linkArray
-    });
-
-    $linkRepeater.find(".condor-active").each(function (i, uiInput) {
-      var icon = $(uiInput).find("i.icon");
-      var input = $(uiInput).find("input");
-      domainMatch(icon, $(input).val());
-    });
-
-    trackCondor($linkRepeater);
-
-    //Telephone masking
-      $("input[type=tel]").mask("(999) 999-9999");
-
-    {% if status == "confirmed" or status == "checked in" %}
-     //State Section
-    var $state = $('#state');
-    $state.val("{{ hacker.state }}");
-    var $state2 = $state.clone().attr("id","state2").attr("tabindex","-1").insertAfter($state);
-    $state.selectize({
-        create: false,
-        hideSelected: true,
-        onDropdownOpen: slideOut,
-        onDropdownClose: slideIn,
-    });
-     var state = $state[0].selectize;
-     var $stateLabel = $state.parent().siblings("label");
-
-     $stateLabel.click(function() {
-         state.focus();
-     });
-
-     $state2.change( function() {
-         state.setValue(this.value);
-     });
-    {% endif %}
 
     initalizeHamburger();
 
      $('.ui.accordion').accordion();
-
-     //forgive me father for i have sinned
-
-     $(".reciepts-upload iframe").each( function ( i ) {
-         href = this.getAttribute('urlattr');
-         filename = this.getAttribute('filename');
-         if ((/\.(gif|jpg|jpeg|tiff|png|svg)$/i).test(filename)) {
-             $(this).replaceWith("<img src='" + href + "'></img>");
-         } else if((/\.(pdf|ai|psd|pages|dxf|fnt|fon|xls|xlsx|doc|docx|pps|ppt|pptx|otf|eps|ps|rar|ttf|xps|zip)$/i).test(filename)) {
-             iframeurl = encodeiFrame(href);
-             this.setAttribute('src', iframeurl);
-         }
-     });
-
-     $('.reciepts-upload .dimmer').dimmer({
-         on: 'hover'
-     });
-
-
-     container = document.querySelector('.cards');
-     if (container) {
-         msnry = new Masonry( container, {
-             // options
-             itemSelector: '.card',
-             columnWidth: container.querySelector('.grid-sizer')
-         });
-
-         imagesLoaded( container, function () {
-             msnry.layout();
-         } );
-     }
-
-
 
   });
 </script>

@@ -23,9 +23,13 @@ class User(AbstractUser):
     
     # Custom Data
     resume = models.FileField(blank=True)
-    sms_notifications = models.BooleanField(default=True)
+    
     teammates = models.CharField(blank=True, max_length=255)
+    journalism = models.BooleanField(default=False)
+    smart_buildings = models.BooleanField(default=False)
+    quantified_self = models.BooleanField(default=False)
     first_hackathon = models.BooleanField(default=False)
+    sms_notifications = models.BooleanField(default=True)
     
     # Internal
     status = models.CharField(default='pending', max_length=255)
