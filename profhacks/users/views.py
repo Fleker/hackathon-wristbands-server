@@ -1,48 +1,71 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
+from django.shortcuts import render, redirect
+from django.conf import settings
+from django.http import Http404, HttpResponse
+from django.contrib.auth.decorators import login_required
 
-from django.core.urlresolvers import reverse
-from django.views.generic import DetailView, ListView, RedirectView, UpdateView
+from .forms import InfoForm, ResumeUploadForm
 
-from braces.views import LoginRequiredMixin
+# Create your views here.
 
-from .models import User
+@login_required
+def hacker_page(request):
+    user = request.user
+    info_form = InfoForm(initial={
+            'teammates': user.teammates,
+            'journalism': '1' if user.journalism else '2',
+            'smart_buildings': '1' if user.smart_buildings else '2',
+            'quantified_self': '1' if user.quantified_self else '2',
+            'first_hackathon': '1' if user.first_hackathon else '2',
+            'sms_notifications': '1' if user.sms_notifications else '2',})
+    return render(request, "hacker_page.html", {
+            'resume_upload': ResumeUploadForm,
+            'info_form': info_form,
+            'registration_status': 'registration_open',
+            'first_name': user.first_name,
+            'status': user.status,
+            'deadline': '10',
+            'resume_exists': 'False',
+    })
 
+@login_required
+def upload_resume(request):
+    user = request.user
+    if request.method == 'POST':
+        user.resume = request.POST.get('resume')
+    import pdb; pdb.set_trace()
+    user.save()
+    return HttpResponse
 
-class UserDetailView(LoginRequiredMixin, DetailView):
-    model = User
-    # These next two lines tell the view to index lookups by username
-    slug_field = "username"
-    slug_url_kwarg = "username"
-
-
-class UserRedirectView(LoginRequiredMixin, RedirectView):
-    permanent = False
-
-    def get_redirect_url(self):
-        return reverse("users:detail",
-                       kwargs={"username": self.request.user.username})
-
-
-class UserUpdateView(LoginRequiredMixin, UpdateView):
-
-    fields = ['name', ]
-
-    # we already imported User in the view code above, remember?
-    model = User
-
-    # send the user back to their own page after a successful update
-    def get_success_url(self):
-        return reverse("users:detail",
-                       kwargs={"username": self.request.user.username})
-
-    def get_object(self):
-        # Only get the User record for the user making the request
-        return User.objects.get(username=self.request.user.username)
-
-
-class UserListView(LoginRequiredMixin, ListView):
-    model = User
-    # These next two lines tell the view to index lookups by username
-    slug_field = "username"
-    slug_url_kwarg = "username"
+@login_required
+def update_info(request):
+    user = request.user
+    if request.method == 'POST':
+        if request.POST.get('teammates'):
+            user.teammates = request.POST.get('teammates')
+        if request.POST.get('journalism'):
+            if request.POST.get('journalism') == '1':
+                user.journalism = True
+            else:
+                user.journalism = False
+        if request.POST.get('smart_buildings'):
+            if request.POST.get('smart_buildings') == '1':
+                user.smart_buildings = True
+            else:
+                user.smart_buildings = False
+        if request.POST.get('quantified_self'):
+            if request.POST.get('quantified_self') == '1':
+                user.quantified_self = True
+            else:
+                user.quantified_self = False
+        if request.POST.get('first_hackathon'):
+            if request.POST.get('first_hackathon') == '1':
+                user.first_hackathon = True
+            else:
+                user.first_hackathon = False
+        if request.POST.get('sms_notifications'):
+            if request.POST.get('sms_notifications') == '1':
+                user.sms_notifications = True
+            else:
+                user.sms_notifications = False
+    user.save()
+    return redirect('users:you')

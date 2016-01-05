@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ hacker.name }} - Hack@Brown 2015
+{{ first_name }} - Hack@Brown 2015
 {% endblock %}
 
 {% block headcss %}
-{{ super() }}
+{{ block.super }}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.11.2/css/selectize.min.css"/>
 <link rel="stylesheet" href="/static/jquery-ui-1.11.2.custom/jquery-ui.min.css"/>
 
@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block headjs %}
-{{ super() }}
+{{ block.super }}
 <script type="application/javascript" src="/static/semantic-final/semantic.min.js"></script>
 {% endblock %}
 
@@ -34,9 +34,6 @@
     <li class="top-bar_li left close" id="back_top"><a class="secondary" href="/">Close</a></li>
     <li class="top-bar_li active" id="status_top"><a href="#status">Status</a></li>
     <li class="top-bar_li" id="info_top"><a href="#info">My Info</a></li>
-    {% if status == "accepted" or status == "confirmed" or status == "checked in" %}
-    <li class="top-bar_li" id="reimbursements_top"><a href="#reimbursements">Reimbursements</a></li>
-    {% endif %}
 
 </ul>
 {% endblock %}
@@ -67,9 +64,6 @@
   <div class="content">
     <div class="description">
         <p>Confirm your attendance?</p>
-        {% if hacker.rmax %}
-        <p id="reimbursements-modal">We can reimburse you up to <a class="money" href="#reimbursements">${{hacker.rmax}}</a> in transit fees.</p>
-        {% endif %}
     </div>
   </div>
   <div class="actions">
@@ -85,7 +79,7 @@
             <div class="pane pane0 active white">
                 <section id="mystatus" class="panel hero">
                     <div class="inner_container">
-                        <h1 class="hi">Hey {{ name }}!</h1>
+                        <h1 class="hi">Hey {{ first_name }}!</h1>
                         <p>your admission status is</p>
                         <div class="status-actions">
                             <div class="left_group">
@@ -120,34 +114,23 @@
                     <div class="inner_container">
                         <h4 class="label grey">Messages</h4>
                         <div class="message_container">
-                        {% if not hacker.resume %}
                         <div class="message items">
                             <div class="message item prompt">
-                                <h3>You haven't uploaded your resume yet!</h3>
+                                <h3>If you havn't, upload your resume!</h3>
                                 <p>We give our sponsors your resume for potential recruitment opportunities.</p>
                                 <div class="actions">
                                     <div class="field">
                                         <div class="upload-control">
-                                            <div id="resume-over" class="resume-upload upload ui button" onclick="document.getElementById('resume').click()">
-                                                {% if hacker.resume %}
-                                                <span>Re-upload</span>
-                                                {% else %}
-                                                <span>Upload Resume</span>
-                                                {% endif %}
-                                            </div>
-                                            <div class="view-resume file-name">
-                                                {% if hacker.resume %}
-                                                <a href='/__serve/{{ hacker.resume }}' target="_blank" download="{{resumeFileName}}">{{resumeFileName}}</a>
-                                                {% else %}
-                                                <span>No file chosen.</span>
-                                                {% endif %}
-                                            </div>
+                                            <a href="https://www.dropbox.com/request/7X3R66Hc6du480W0BRNM">
+                                                <div id="resume-over" class="resume-upload upload ui button">
+                                                    <span>Upload</span>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {% endif %}
                         </div>
                     </div>
                 </section>
@@ -155,382 +138,10 @@
             <div class="pane pane1 white">
                 <section id="myinfo" class="panel">
 
-                    <form id='update_form' class='ui form inner_container' method='POST' enctype="multipart/form-data" novalidate>
-                        <h3>View and update your information:</h3>
-                        <div class="two fields row">
-                            <div class="field">
-                                <label for="name">Name</label>
-                                <div class="ui icon input">
-                                    <input id="name" type="text" name="name" placeholder="Josiah Carberry" value="{{ hacker.name }}"/>
-                                    <i class="icon"></i>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label for="email">Email</label>
-                                <div class="ui icon input">
-                                    <input type="email" id="email" name="email" placeholder="handle@schooldomain.edu" value="{{ hacker.email }}" disabled/>
-                                    <i class="icon"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="two fields row">
-                            <div class="field">
-                                <div class="two fields">
-                                    <div class="ten wide field ui-widget">
-                                        <label for="school">School</label>
-                                        <div class="ui icon input">
-                                            <input id="school" type="text" name="school" placeholder="Beige University" value="{{ hacker.school }}"/>
-                                            <i class="icon"></i>
-                                        </div>
-                                    </div>
-                                    <div class="six wide field">
-                                        <label for="year">Year</label>
-                                        <div class="ui icon input select">
-                                            <select id="year" type="text" name="year" placeholder="Select Year"
-                                            value="sophomore">
-                                                <option value="freshman">First Year</option>
-                                                <option value="sophomore">Second Year</option>
-                                                <option value="junior">Third Year</option>
-                                                <option value="senior">Fourth Year</option>
-                                                <option value="highschool">High School</option>
-                                                <option value="grad_student">Grad Student</option>
-                                            </select>
-                                            <i class="icon"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="field">
-                                <label>T-Shirt Size</label>
-                                <div class="shirt_size radiogroup">
-                                    <table class="radio_select radiobuttons center">
-                                        <tr>
-                                            <td>
-                                                <input type="radio" name="shirt_gen" id="sgM" value='M' />
-                                                <label for="sgM">Men's</label>
-                                            </td>
-                                            <td>
-                                                <input type="radio" name="shirt_gen" id="sgW" value='W' />
-                                                <label for="sgW">Women's</label>
-                                            </td>
-                                        </tr>
-                                    </table>
-
-                                    <table class="radio_select radiobuttons center">
-                                        <tr>
-                                            <td>
-                                                <input type="radio" name="shirt_size" id="ssXS" value='XS' />
-                                                <label for="ssXS">XS</label>
-                                            </td>
-                                            <td>
-                                                <input type="radio" name="shirt_size" id="ssS" value='S' />
-                                                <label for="ssS">S</label>
-                                            </td>
-                                            <td>
-                                                <input type="radio" name="shirt_size" id="ssM" value='M' />
-                                                <label for="ssM">M</label>
-                                            </td>
-                                            <td>
-                                                <input type="radio" name="shirt_size" id="ssL" value='L' />
-                                                <label for="ssL">L</label>
-                                            </td>
-                                            <td>
-                                                <input type="radio" name="shirt_size" id="ssXL" value='XL' />
-                                                <label for="ssXL">XL</label>
-                                            </td>
-                                            <td>
-                                                <input type="radio" name="shirt_size" id="ssXXL" value='XXL' />
-                                                <label for="ssXXL">XXL</label>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">						
-                            <div class="field">
-                                <label for="major">Major(s)</label>
-                                <div class="ui icon input">
-                                    <input id="major" class="tags-input" type="text" name="major" value="{% if hacker.major %}{{ hacker.major }}{% endif %}"/>
-                                    <i class="icon"></i>
-                                </div>
-                            </div>					
-                        </div>
-                        <div class="two fields row">
-                            <div class="field">
-                                <label for="phone_number">Cell Number <span class="optional">(Optional)</span></label>
-								<div class="ui icon input">
-                                    <input id="phone_number" type="tel" name="phone_number" placeholder="(123) 456-7890" value="{% if hacker.phone_number %}{{ hacker.pretty_phone() }}{% endif %}"/>
-                                    <i class="icon"></i>
-								</div>
-                            </div>
-                            <div class="field">
-                                <label for="dietary_restrictions">Dietary Restrictions?</label>
-                                <div class="ui icon input">
-                                    <input id="dietary_restrictions" class="tags-input" type="text" name="dietary_restrictions" value="{{ hacker.dietary_restrictions }}"/>
-                                    <i class="icon"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="field">
-                              <label for="teammates">Any Friends You'd Like to Work With? <span class="optional">(Optional, Limit 3 Emails)</span></label>
-                                <div class="ui icon input">
-                                    <input id="teammates" class="tags-input" type="text" name="teammates" value="{{ hacker.teammates }}"/>
-                                    <i class="icon"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="two fields row">
-                            <div class="field">
-                                <label for="hardware_hack">Hardware Hack?</label>
-                                <table class="radio_select radiobuttons" for="hardware_hack">
-                                    <tr>
-                                        <td>
-                                            <input type="radio" name="hardware_hack" id="hardware_yes" value='yes' />
-                                            <label for="hardware_yes">Yes!</label>
-                                        </td>
-                                        <td>
-                                            <input type="radio" name="hardware_hack" id="hardware_no" value='no' />
-                                            <label for="hardware_no">No</label>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="field">
-                                <label for="resume">Resume <span class="optional">(Recommended)</span></label>
-                                <div class="upload-control">
-                                    <input id="resume" class="resume-upload upload" type="file" name="resume"/>
-                                    <div id="resume-over" class="resume-upload upload ui button" onclick="document.getElementById('resume').click()">
-                                        {% if hacker.resume %}
-                                        <span>Re-upload</span>
-                                        {% else %}
-                                        <span>Upload Resume</span>
-                                        {% endif %}
-                                    </div>
-                                    <div class="view-resume file-name">
-                                        {% if hacker.resume %}
-                                        <a href='/__serve/{{ hacker.resume }}' target="_blank" download="{{resumeFileName}}">{{resumeFileName}}</a>
-                                        {% else %}
-                                        <span>No file chosen.</span>
-                                        {% endif %}
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="two fields row">
-                            <div class="field">
-                                <label for="first_hackathon">Will this be your first hackathon?</label>
-                                <table class="radio_select radiobuttons" for="first_hackathon">
-                                    <tr>
-                                        <td>
-                                            <input type="radio" name="first_hackathon" id="first_hackathon_yes" value='yes' />
-                                            <label for="first_hackathon_yes">Yes!</label>
-                                        </td>
-                                        <td>
-                                            <input type="radio" name="first_hackathon" id="first_hackathon_no" value='no' />
-                                            <label for="first_hackathon_no">No</label>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div class="field">
-	                            <div class="field">
-                                    <label for="links">Links <span class="optional">(Optional)</span></label>
-                                    <div class="condor"></div>
-	                                
-	                            </div>
-                            </div>
-                        </div>
-                    </form>
+                {% load crispy_forms_tags %}
+                {% crispy info_form info_form.helper %}
+                
                 </section>
-            </div>
-            <div class="pane pane2 white">
-                <section class="panel hero condensed-bottom">
-                    <div class="inner_container">
-                        {% if status == "accepted" and hacker.rmax %}
-                        <h1 class="hi" id="rsvp-link">You must <a href="#status">RSVP</a> before you can be reimbursed.</h1>
-                        {% else %}
-                        <h1 class="hi">Congratulations!</h1>
-                        {% endif %}
-                        {% if hacker.rmax %}
-
-                        {% if deadline < 0 and hacker.rtotal < 30 %}
-                        <strong>Your reimbursement deadline has elapsed, so we can only reimburse you <span class="money">$30</span>.  Reciepts are due on 3.1.2015</strong></p>
-                        {% else %}
-                        <p>We can reimburse you up to <span class="money">${{hacker.rmax}}</span> in transit fees.</p>
-                        <p><strong>All reimbursement requests must be uploaded by 11:59 PM ET on {{deadlineFull}}.</strong></p>
-                        {% endif %}
-                        {% else %}
-                        <p>You don't need any reimbursement to come, silly!</p>
-                        <p>Think this is an error? Email us at <a href="mailto:hello@hackatbrown.org?subject=Cancelling%20My%20Registration">hello@hackatbrown.org</a>.</p>
-                        {% endif %}
-                    </div>
-                </section>
-                {% if hacker.rmax %}
-                <section class="reciepts-section panel condensed-top condensed-bottom">
-                    <form class="ui form reciepts-upload inner_container">
-
-                        <h3>{% if (deadline < 0 and hacker.rtotal) or (deadline >= 0) %}Add receipts:{% else %}Uploaded Receipts:{% endif %}</h3>
-                        <div id="receipts-upload" class="upload field">
-                            {% if (deadline < 0 and hacker.rtotal) or (deadline >= 0) %}
-                            <input id="receipts" class="receipts-upload upload" type="file" name="receipts" onchange="uploadReceipts(this.parentNode)" multiple/>
-                            <div id="receipts-over" class="receipts-upload upload ui button" onclick="document.getElementById('receipts').click()">
-                                {% if hacker.receipts %}
-                                <span>Upload More</span>
-                                {% else %}
-                                <span>Upload Receipts</span>
-                                {% endif %}
-                            </div>
-                            {% endif %}
-                            <div class="ui cards">
-                                <div class="grid-sizer"></div>
-                            {% if hacker.receipts %}
-                                {% for receipt in hacker.receipts %}
-                                <div class="view-receipts multi ui card">
-                                    <div class="ui image dimmable">
-                                        <div class="ui dimmer">
-                                            <div class="content">
-                                                <div class="center"><a id="open" class="ui inverted button" href="/__serve/{{ receipt }}" download="{{receiptsFileNames[loop.index0]}}" target="_blank">Download</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <iframe filename="{{receiptsFileNames[loop.index0]}}" urlattr="/__serve/{{ receipt }}"></iframe>
-                                    </div>
-                                    <div class="extra flex"><span class="file-name">{{receiptsFileNames[loop.index0]}}</span>
-                                        <div id="delete" class="delete-receipt ui pink button">REMOVE</div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            {% endif %}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="field">
-                                <label for="reimbursement-needed">Total Reimbursement Needed</label>
-                                <div class="ui labeled icon input">
-                                    <div class="ui label">
-                                        $
-                                    </div>
-                                    <input {% if deadline < 0 and hacker.rtotal >= 30 %} disabled {% endif %} type="number" id="reimbursement-needed" name="rtotal" value="{{hacker.rtotal or ''}}" placeholder="0" max="{{hacker.rmax}}" min="0" />
-                                    <i class="icon"></i>
-                                    <div class="ui label">
-                                        USD
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </section>
-                <section class="reciepts-section panel condensed-top">
-                        <form id='address_form' class='ui form inner_container condensed'enctype="multipart/form-data" autocomplete="on" novalidate
-                        {% if not hacker.receipts %} style="display: none;" {% endif %}
-                        >
-                            <h3>Send my reimbursement check to:</h3>
-<!--                         TODO: VALIDATION -->
-                            <div class="row">
-                                <div class="field">
-                                    <label for="address1">address</label>
-                                    <div class="ui icon input">
-                                        <input type="text" id="address1" name="address1" value="{{hacker.address1 or ''}}" placeholder="127 Brown St."/>
-                                        <i class="icon"></i>
-                                    </div>
-                                    <div class="ui icon input">
-                                        <input type="text" id="address2" name="address2" value="{{hacker.address2 or ''}}" placeholder="Box 001"/>
-                                        <i class="icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="four fields">
-                                    <div class="eight wide field">
-                                        <label for="city">city</label>
-                                        <div class="ui icon input">
-                                            <input type="text" id="city" name="city" value="{{hacker.city or ''}}" placeholder="Providence"/>
-                                            <i class="icon"></i>
-                                        </div>
-                                    </div>
-                                    <div class="two wide field">
-                                        <label for="state">state</label>
-                                        <div class="ui icon input">
-                                            <select id="state" name="state">
-                                                <option value="N/A">N/A</option>
-                                                <option value="AL">AL</option>
-                                                <option value="AK">AK</option>
-                                                <option value="AZ">AZ</option>
-                                                <option value="AR">AR</option>
-                                                <option value="CA">CA</option>
-                                                <option value="CO">CO</option>
-                                                <option value="CT">CT</option>
-                                                <option value="DE">DE</option>
-                                                <option value="FL">FL</option>
-                                                <option value="GA">GA</option>
-                                                <option value="HI">HI</option>
-                                                <option value="ID">ID</option>
-                                                <option value="IL">IL</option>
-                                                <option value="IN">IN</option>
-                                                <option value="IA">IA</option>
-                                                <option value="KS">KS</option>
-                                                <option value="KY">KY</option>
-                                                <option value="LA">LA</option>
-                                                <option value="ME">ME</option>
-                                                <option value="MD">MD</option>
-                                                <option value="MA">MA</option>
-                                                <option value="MI">MI</option>
-                                                <option value="MN">MN</option>
-                                                <option value="MS">MS</option>
-                                                <option value="MO">MO</option>
-                                                <option value="MT">MT</option>
-                                                <option value="NE">NE</option>
-                                                <option value="NV">NV</option>
-                                                <option value="NH">NH</option>
-                                                <option value="NJ">NJ</option>
-                                                <option value="NM">NM</option>
-                                                <option value="NY">NY</option>
-                                                <option value="NC">NC</option>
-                                                <option value="ND">ND</option>
-                                                <option value="OH">OH</option>
-                                                <option value="OK">OK</option>
-                                                <option value="OR">OR</option>
-                                                <option value="PA">PA</option>
-                                                <option value="RI">RI</option>
-                                                <option value="SC">SC</option>
-                                                <option value="SD">SD</option>
-                                                <option value="TN">TN</option>
-                                                <option value="TX">TX</option>
-                                                <option value="UT">UT</option>
-                                                <option value="VT">VT</option>
-                                                <option value="VA">VA</option>
-                                                <option value="WA">WA</option>
-                                                <option value="WV">WV</option>
-                                                <option value="WI">WI</option>
-                                                <option value="WY">WY</option>
-                                            </select>
-                                            <i class="icon"></i>
-                                        </div>
-                                    </div>
-                                    <div class="two wide field">
-                                        <label for="zip">zip</label>
-                                        <div class="ui icon input">
-                                            <input type="text" id="zip" name="zip" value="{{hacker.zip or ''}}" placeholder="02912"/>
-                                            <i class="icon"></i>
-                                        </div>
-                                    </div>
-                                    <div class="four wide field">
-                                        <label for="country">country</label>
-                                        <div class="ui icon input">
-                                            <input type="text" id="country" name="country" value="{{hacker.country or ''}}" placeholder="United States"/>
-                                            <i class="icon"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                </section>
-                {% endif %}
             </div>
         </div>
     </div>
@@ -553,69 +164,12 @@
 <script type="text/javascript" src="/static/js/jquery.maskMoney.min.js"></script>
 
 <script>
-  var secret = "{{ hacker.secret }}";
-  var status = "{{ status }}";
-  var receipts = "{{ hacker.receipts }}";
-  var rmax = "{{hacker.rmax}}";
-  var deadline = "{{deadline}}";
-
-    var container,
-        msnry;
 
   $(document).ready(function () {
-
-    messagesCheckNone();
-
-    if (receipts == "None") {
-        toggleReimbursementForm(false);
-    }
-
-    $('#delete-button').click(function() {
-        confirmDeleteHacker(secret);
-    });
-
-    $('#rsvp-button').click(function() {
-        rsvp(secret);
-    });
-
-      $(".delete-receipt").click(function() {
-          deleteFile(this.parentNode.parentNode, 'receipts');
-      });
 
     if (location.hash === '#info') {
       setTabActive($("#info_top"));
       switchPanes(1);
-    }
-
-    if (status == "accepted" || status == "confirmed" || status == "checked in") {
-        if (location.hash === '#reimbursements') {
-          setTabActive($("#reimbursements_top"));
-          switchPanes(2);
-        }
-
-        $("#reimbursements_top").click(function () {
-          this.preventDefault;
-          setTabActive(this);
-          switchPanes(2);
-        });
-
-        $("#reimbursements-modal").click(function () {
-            this.preventDefault;
-            $("#rsvp-modal .no").click();
-            setTabActive($("#reimbursements_top"));
-            switchPanes(2);
-        });
-
-        $("#rsvp-link").click(function () {
-          this.preventDefault;
-          setTabActive($("#status_top"));
-          switchPanes(0);
-        });
-
-        if (status == "accepted") {
-            $('.reciepts-section').hide();
-        }
-
     }
 
     $("#status_top").click(function () {
@@ -630,293 +184,11 @@
       switchPanes(1);
     });
 
-
     initalizeNavMenu('.top-bar_ul');
-
-    //    Form stuff. Needs to stay in the html for jinja to do its thing
-    $(".form :input:not(.tags-input)").not('#reimbursement-needed').change(function () {
-        saveChange(this.name, this.value, this.parentNode, secret, true);
-    });
-
-    var debouncedSaveChange = _.debounce(saveChange, 2000);
-    $(".tags-input, #reimbursement-needed").change(function () {
-        debouncedSaveChange(this.name, this.value, this.parentNode, secret, true);
-    });
-
-
-    //Year Section
-      var $year = $('#year').val("{{ hacker.year }}").selectize({
-          create: false,
-          hideSelected: true,
-          onDropdownOpen: slideOut,
-          onDropdownClose: slideIn,
-      });
-    var year = $year[0].selectize;
-    var $yearLabel = $year.parent().siblings("label");
-
-    $yearLabel.click(function() {
-      year.focus();
-    });
-
-    //Dietary Restrictions Section
-      var rawDiet = {% include "data/dietary-restrictions.json" %};
-    var dietaryRestrictionsData = [];
-    $.each(rawDiet, function (key, val) {
-        dietaryRestrictionsData.push({"diet" : val});
-    });
-
-    var $dietaryRestrictions = $('#dietary_restrictions').selectize({
-      valueField: 'diet',
-      labelField: 'diet',
-      searchField: ['diet'],
-      delimiter: ',',
-      persist: false,
-      hideSelected: true,
-      options: dietaryRestrictionsData,
-      onDropdownOpen: slideOut,
-      onDropdownClose: slideIn,
-        create: true,
-        createOnBlur: true,
-//      create: function (input) {
-//        return {
-//          value: input,
-//          text: input
-//        }
-//      }
-    });
-
-    var dietaryRestrictions = $dietaryRestrictions[0].selectize;
-    var $dietaryRestrictionsLabel = $dietaryRestrictions.parent().siblings("label");
-
-    $dietaryRestrictionsLabel.click(function() {
-        dietaryRestrictions.focus();
-    })
-
-    //Teammates Section
-
-    var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
-      '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
-
-
-    var $teammates = $('#teammates').selectize({
-      labelField: 'email',
-      valueField: 'email',
-      searchField: 'email',
-      delimiter: ',',
-      maxItems: 3,
-      persist: true,
-      hideSelected: true,
-      onDropdownOpen: slideOut,
-      onDropdownClose: slideIn,
-      createFilter: function (input) {
-        var match, regex;
-
-        // email@address.com
-        regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-        match = input.match(regex);
-        if (match) return !this.options.hasOwnProperty(match[0]);
-
-        // name <email@address.com>
-        regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-        match = input.match(regex);
-        if (match) return !this.options.hasOwnProperty(match[2]);
-
-        return false;
-      },
-      create: function (input) {
-        if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-          return {
-            email: input
-          };
-        }
-        var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-        if (match) {
-          $teammates.find("input").focus();
-          return {
-            email: match[2],
-            name: $.trim(match[1])
-          };
-        }
-        alert('Invalid email address.');
-        return false;
-      }
-    });
-
-    var teammates = $teammates[0].selectize;
-    var $teammatesLabel = $teammates.parent().siblings("label");
-
-    $teammatesLabel.click(function() {
-        teammates.focus();
-    });
-
-    //Shirt Size Section
-    // Populate the radio buttons
-    populateDefaultRadio("shirt_gen", "{{ hacker.shirt_gen }}");
-    populateDefaultRadio("shirt_size", "{{ hacker.shirt_size }}");
-    populateDefaultRadio("hardware_hack", "{{ hacker.hardware_hack }}");
-    populateDefaultRadio("first_hackathon", "{{ hacker.first_hackathon }}");
-
-    //School Section
-    /* Autocomplete suggestions for schools TODO */
-//    var universities = [];
-//    $.getJSON("/static/data/universities.json", function (data) {
-//      $.each(data, function (key, val) {
-//        universities[key] = val;
-//      })
-//    });
-//
-//    $(".schools").autocomplete({
-//      source: universities
-//    });
-      var schools = {% include "data/universities.json" %};
-
-      var $school = $('#school').selectize({
-          valueField: 'label',
-          labelField: 'label',
-          searchField: ['label'],
-          maxItems: 1,
-          persist: false,
-          hideSelected: true,
-          options: schools,
-          onDropdownOpen: slideOut,
-          onDropdownClose: slideIn,
-          create: true,
-          createOnBlur: true,
-//          create: function (input) {
-//              return {
-//                  label: input,
-//                  domain: ""
-//              }
-//          }
-      });
-
-      var school = $school[0].selectize;
-      var $schoolLabel = $school.parent().siblings("label");
-
-      $school.click(function() {
-          school.focus();
-      })
-		
-		// Major Section
-		var majors = {% include "data/majors.json" %};
-      
-      var majorsData = [];
-      $.each(majors, function (key, val) {
-          majorsData.push({"major" : val});
-      });
-
-      var $major = $('#major').selectize({
-          valueField: 'major',
-          labelField: 'major',
-          searchField: ['major'],
-          delimiter: ',',
-          persist: false,
-          hideSelected: true,
-          options: majorsData,
-          onDropdownOpen: slideOut,
-          onDropdownClose: slideIn,
-          create: true,
-          createOnBlur: true,
-//          create: function (input) {
-//              return {
-//                  value: input,
-//                  text: input
-//              }
-//          }
-      });
-
-      var major = $major[0].selectize;
-      var $majorLabel = $major.parent().siblings("label");
-
-      $major.click(function() {
-          major.focus();
-      })
-		
-    //Links Section
-
-    // Split the links into an array
-    var linkArray = processCSV("{{ hacker.links }}");
-
-    //Repeater list
-    var $linkRepeater = $(".condor").condor({
-      uniqueNames: false,
-      namePrefix: 'links',
-      activeHint: 'Github, Dribbble, Behance, etc.',
-      inactiveHint: 'add another link',
-      inputType: 'url',
-      prepopulate: linkArray
-    });
-
-    $linkRepeater.find(".condor-active").each(function (i, uiInput) {
-      var icon = $(uiInput).find("i.icon");
-      var input = $(uiInput).find("input");
-      domainMatch(icon, $(input).val());
-    });
-
-    trackCondor($linkRepeater);
-
-    //Telephone masking
-      $("input[type=tel]").mask("(999) 999-9999");
-
-    {% if status == "confirmed" or status == "checked in" %}
-     //State Section
-    var $state = $('#state');
-    $state.val("{{ hacker.state }}");
-    var $state2 = $state.clone().attr("id","state2").attr("tabindex","-1").insertAfter($state);
-    $state.selectize({
-        create: false,
-        hideSelected: true,
-        onDropdownOpen: slideOut,
-        onDropdownClose: slideIn,
-    });
-     var state = $state[0].selectize;
-     var $stateLabel = $state.parent().siblings("label");
-
-     $stateLabel.click(function() {
-         state.focus();
-     });
-
-     $state2.change( function() {
-         state.setValue(this.value);
-     });
-    {% endif %}
 
     initalizeHamburger();
 
      $('.ui.accordion').accordion();
-
-     //forgive me father for i have sinned
-
-     $(".reciepts-upload iframe").each( function ( i ) {
-         href = this.getAttribute('urlattr');
-         filename = this.getAttribute('filename');
-         if ((/\.(gif|jpg|jpeg|tiff|png|svg)$/i).test(filename)) {
-             $(this).replaceWith("<img src='" + href + "'></img>");
-         } else if((/\.(pdf|ai|psd|pages|dxf|fnt|fon|xls|xlsx|doc|docx|pps|ppt|pptx|otf|eps|ps|rar|ttf|xps|zip)$/i).test(filename)) {
-             iframeurl = encodeiFrame(href);
-             this.setAttribute('src', iframeurl);
-         }
-     });
-
-     $('.reciepts-upload .dimmer').dimmer({
-         on: 'hover'
-     });
-
-
-     container = document.querySelector('.cards');
-     if (container) {
-         msnry = new Masonry( container, {
-             // options
-             itemSelector: '.card',
-             columnWidth: container.querySelector('.grid-sizer')
-         });
-
-         imagesLoaded( container, function () {
-             msnry.layout();
-         } );
-     }
-
-
 
   });
 </script>

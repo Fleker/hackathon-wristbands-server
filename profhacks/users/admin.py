@@ -36,3 +36,34 @@ class MyUserCreationForm(UserCreationForm):
 class UserAdmin(AuthUserAdmin):
     form = MyUserChangeForm
     add_form = MyUserCreationForm
+    fieldsets = AuthUserAdmin.fieldsets + (
+        ('Major League Hacking Data',
+                {'fields': 
+                    ('graduation', 
+                     'major', 
+                     'shirt_size', 
+                     'dietary_restrictions', 
+                     'special_needs', 
+                     'date_of_birth', 
+                     'gender', 
+                     'phone_number', 
+                     'school',),
+                 }
+         ),
+        ('Custom Data',
+                {'fields':
+                    ('resume',
+                     'teammates',
+                     'journalism',
+                     'smart_buildings',
+                     'quantified_self',
+                     'first_hackathon',
+                     'sms_notifications',),
+                }
+         ),
+        ('Internal Use',
+                {'fields':
+                    ('status',),
+                }
+         )
+    )
