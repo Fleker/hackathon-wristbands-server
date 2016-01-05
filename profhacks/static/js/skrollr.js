@@ -562,7 +562,7 @@
 		options = options || {};
 
 		var now = _now();
-		var scrollTop = _instance.getScrollTop();
+		var scrollTop = _instance.getScrollTop(); //Hacky!
 
 		//Setting this to a new value will automatically cause the current animation to stop, if any.
 		_scrollAnimation = {
