@@ -26,3 +26,9 @@ django-autoslug==1.9.3
 
 # Time zones support
 pytz==2015.7
+
+# Email
+sendgrid-django
+
+# Helpful Model Fields
+django-phonenumber-field
