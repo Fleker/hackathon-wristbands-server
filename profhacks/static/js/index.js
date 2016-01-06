@@ -274,3 +274,6 @@ $(document).ready(function () {
 function registrationNull() {
     alert("**Slow your rolls there!**\n\nWe haven't finished coding the backend yet.");
 }
+function registrationGo() {
+    window.location.href = '/accounts/mlh/login';
+}
