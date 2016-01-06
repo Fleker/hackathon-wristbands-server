@@ -26,7 +26,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", default='CHANGEME!!!')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(APPS_DIR.path('profhacks.db')),
+        'NAME': str(ROOT_DIR.path('profhacks.db')),
     }
 }
 
