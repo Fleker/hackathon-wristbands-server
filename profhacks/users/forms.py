@@ -30,19 +30,19 @@ class InfoForm(forms.Form):
     )
     
     journalism = forms.ChoiceField(
-        label = "Data / Sensor Journalism Hack?",
+        label = "Interested in a Data / Sensor Journalism Hack?",
         widget=forms.RadioSelect, 
         choices=(('1', 'Yes!',), ('2', 'No',)),
     )
     
     smart_buildings = forms.ChoiceField(
-        label = "Smart Building Hack?",
+        label = "Interested in a Smart Building Hack?",
         widget=forms.RadioSelect, 
         choices=(('1', 'Yes!',), ('2', 'No',)),
     )
     
     quantified_self = forms.ChoiceField(
-        label = "Quantified Self Hack?",
+        label = "Interested in a Quantified Self Hack?",
         widget=forms.RadioSelect, 
         choices=(('1', 'Yes!',), ('2', 'No',)),
     )

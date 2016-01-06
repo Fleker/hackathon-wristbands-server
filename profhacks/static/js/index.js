@@ -31,7 +31,7 @@ function sectionChanged(s) {
 
 function transferInitInfo() {
     var vals = $("form.init_reg").serializeArray();
-    $(".registration_form input[name='email']").val(vals[0].value);
+    $(".registration_form input[name='email']").val(vals[0].value); 
 }
 
 function fixSplashHeight() {
@@ -194,6 +194,15 @@ function initalizeHamburger() {
         $("nav").toggleClass("open");
     });
 }
+/*function fixSlants() {
+    var w = window.innerWidth;
+    
+    //Okay. This is really ugly.
+    if($('#triangle_borders')[0] == undefined) {
+        $('body').append("<style id='triangle_borders'></script>"); 
+    }
+    $('#triangle_borders').html('.triangle_top_left::after { border-left-width: '+w+'px; } .triangle_top_right::after { border-right-width: '+w+'px } .triangle_bottom_left::after { border-left-width: '+w+'px; } .triangle_bottom_right::after { border-right-width: '+w+'px }');
+}*/
 
 $(document).ready(function () {
     var iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent),
@@ -218,7 +227,11 @@ $(document).ready(function () {
     // Fix splash height if the browser resizes
     $(window).resize(function () {
         fixSplashHeight();
+        
+        //Fix slants
+//        fixSlants();
     });
+//    fixSlants();
 
     initalizeReg();
 
@@ -234,5 +247,33 @@ $(document).ready(function () {
     setTimeout(function() {
         $($fader).remove();
     }, 500);
+    
+    $('.top-bar_li').click(function() {
+        setTimeout(function() {
+            for(i=0;i<80;i++) {
+                setTimeout(function() {
+                    window.scrollBy(0, -1)
+                }, i*1.5);
+            }
+//            console.log("Imma try my best!");
+        }, 750);
+    });
 
+    //Elevator.js
+    window.elevator = new Elevator({
+        mainAudio: '../static/audio/elevator.mp3',
+        endAudio: '../static/audio/ding.mp3',
+        element: document.querySelector('.elevator-button')
+      });
+    
+    postSchedule();
+    postSponsors();
+    postFAQs();
 });
+
+function registrationNull() {
+    alert("**Slow your rolls there!**\n\nWe haven't finished coding the backend yet.");
+}
+function registrationGo() {
+    window.location.href = '/accounts/mlh/login';
+}

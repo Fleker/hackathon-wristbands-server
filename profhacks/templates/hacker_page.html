@@ -11,6 +11,7 @@
 
 <link rel='stylesheet' href='/static/semantic-final/semantic.min.css' />
 <link rel="stylesheet" href="/static/css/hacker_page.css" />
+<link rel="stylesheet" href="/static/css/index.css" />
 
 {% endblock %}
 
@@ -23,15 +24,16 @@
 <div class="hamburger">
     <svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
         <g class="hamsvg" sketch:type="MSLayerGroup">
-            <rect class="bar" fill="#404040" sketch:type="MSShapeGroup" x="0" y="25" width="30" height="5"></rect>
-            <rect class="bar" fill="#404040" sketch:type="MSShapeGroup" x="0" y="12.5" width="30" height="5"></rect>
-            <rect class="bar" fill="#404040" sketch:type="MSShapeGroup" x="0" y="0" width="30" height="5"></rect>
+            <rect class="bar" fill="#fff" sketch:type="MSShapeGroup" x="0" y="25" width="30" height="5"></rect>
+            <rect class="bar" fill="#fff" sketch:type="MSShapeGroup" x="0" y="12.5" width="30" height="5"></rect>
+            <rect class="bar" fill="#fff" sketch:type="MSShapeGroup" x="0" y="0" width="30" height="5"></rect>
         </g>
     </svg>
 </div>
 <div class="hamburger over"></div>
 <ul class="top-bar_ul constrained" data-0="" data-1="">
-    <li class="top-bar_li left close" id="back_top"><a class="secondary" href="/">Close</a></li>
+    <li class="top-bar_li" id="back_top"><a class="secondary" href="/">Close</a></li> 
+<!--    left close-->
     <li class="top-bar_li active" id="status_top"><a href="#status">Status</a></li>
     <li class="top-bar_li" id="info_top"><a href="#info">My Info</a></li>
 
@@ -82,7 +84,7 @@
                         <h1 class="hi">Hey {{ first_name }}!</h1>
                         <p>your admission status is</p>
                         <div class="status-actions">
-                            <div class="left_group">
+                            <div class="">
                                 <div class="admit_status {{ status }}">
                                     <span>{{ status }}</span>
                                 </div>
@@ -93,7 +95,7 @@
                                 {% endif %}
                             </div>
                             {% if status == "accepted" or status == "waitlisted" or status == "pending" or status == "confirmed" %}
-                            <div class="delete field">
+                            <br><br><div class="delete field" onclick='window.location.href = mailto:frederickson0@students.rowan.edu'>
                                 <input id="delete-button" class="ui basic rsvp button" type="button" value="Cancel Registration" />
                             </div>
                             {% endif %}
@@ -146,6 +148,18 @@
         </div>
     </div>
 </div>
+
+<script>
+    //Manually redo the radio buttons b/c
+    a = $('.radio');
+    for(i=0;i<a.length;i++) {
+        var b = a[i];
+        var c = b.children[0]; //Get the top-level label
+        var d = c.children[0]; //Get the input element
+        var e = c.innerHTML.substring(d.outerHTML.length+1).trim();
+        c.innerHTML = d.outerHTML+'<label for="'+d.id+'">'+e+'</label>';
+    }
+</script>
 
 <script type="text/javascript" src='/static/js/gutabslider.js'></script>
 
