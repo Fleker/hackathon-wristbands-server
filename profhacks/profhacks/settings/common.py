@@ -76,8 +76,8 @@ FIXTURE_DIRS = (
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
-SENDGRID_USER = env('SENDGRID_USER')
+EMAIL_BACKEND = 'sgbackend.SendGridBackend'
+SENDGRID_USER = env('SENDGRID_USERNAME')
 SENDGRID_PASSWORD = env('SENDGRID_PASSWORD')
 
 # MANAGER CONFIGURATION
@@ -95,8 +95,12 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(APPS_DIR.path('profhacks.db')),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
 '''

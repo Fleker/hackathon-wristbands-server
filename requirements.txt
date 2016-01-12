@@ -1,0 +1,3 @@
+# For heroku deployment
+
+-r profhacks/requirements/production.txt

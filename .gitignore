@@ -38,3 +38,7 @@ my_test_project/*
 .coverage
 .tox
 .cache
+
+db/
+.Env
+staticfiles/
