@@ -1,0 +1,32 @@
+* {margin:0;padding:0;}
+
+body, html {
+	color: #111;
+    margin:0;
+    padding:0;
+    width:100%;
+/*    font-size: 12pt;*/
+}
+
+body, input {
+	font-family: 'Brown', sans-serif;
+}
+
+.vertically-centered {
+	display: table;
+}
+
+.vertically-centered-content {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Brown', sans-serif;
+	font-weight: normal;
+}
+
+a:active, a:focus, a:hover {
+    outline: 0 !important;
+}

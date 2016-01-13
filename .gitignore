@@ -41,4 +41,3 @@ my_test_project/*
 
 db/
 .Env
-staticfiles/

@@ -1,1 +1,1 @@
-web: gunicorn profhacks.profhacks.wsgi --log-file -
+web: waitress-serve --port=$PORT profhacks.wsgi:application

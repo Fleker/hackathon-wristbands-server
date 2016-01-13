@@ -1,10 +1,2 @@
 eclipse.preferences.version=1
-encoding//profhacks/contrib/sites/migrations/0002_set_site_domain_and_name.py=utf-8
-encoding//profhacks/mlh/tests.py=utf-8
-encoding//profhacks/profhacks/settings/__init__.py=utf-8
-encoding//profhacks/profhacks/settings/common.py=utf-8
-encoding//profhacks/profhacks/settings/local.py=utf-8
-encoding//profhacks/users/admin.py=utf-8
-encoding//profhacks/users/models.py=utf-8
-encoding//profhacks/users/urls.py=utf-8
-encoding//profhacks/users/views.py=utf-8
+encoding//profhacks/settings/common.py=utf-8
