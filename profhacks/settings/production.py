@@ -6,7 +6,7 @@ from .common import *  # noqa
 # ------------------------------------------------------------------------------
 DEBUG = env.bool('DJANGO_DEBUG', default=False)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'profhacks.herokuapp.com', 'profhacks.com'] 
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'profhacks.herokuapp.com', 'profhacks.com', 'www.profhacks.com'] 
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
