@@ -213,7 +213,7 @@ rect {
     position: absolute;
 }
 .logo {
-    height: 350px;
+    height: 40vh;
     margin: 0 auto;
 /*    margin-top: 8%;*/
     background-image: url(../img/logo-color-poly.svg);
@@ -506,7 +506,7 @@ section .background > .right {
 
 /* PANEL SPECIFIC */
 .meta {
-    background: #4CAF50;
+    background: rgba(92, 204, 113,1);
     padding-top: 100px;
 }
 .meta article {
@@ -521,19 +521,19 @@ section .background > .right {
     margin-top:-80px;   
 }
 .meta_triangle_top::after, .meta_triangle_bottom::after {
-    border-left-color: #4CAF50;
-    border-right-color: #4CAF50;
+    border-left-color: rgba(92, 204, 113,1);
+    border-right-color: rgba(92, 204, 113,1);
 }
 
 .twitter_triangle_top {
     margin-top:-140px;
 }
 .twitter_triangle_top::after, .twitter_triangle_bottom::after {
-    border-left-color: #03A9F4;
-    border-right-color: #03A9F4;
+    border-left-color: rgba(52, 152, 219,0.8);
+    border-right-color: rgba(52, 152, 219,0.8);
 }
 .twitter_panel {
-    background: #03A9F4;
+    background: rgba(52, 152, 219,0.8);
 }
 #twitter_panel {
     text-align:center;
@@ -543,11 +543,11 @@ section .background > .right {
     margin-top:-140px;
 }
 .physical_triangle_top::after, .physical_triangle_bottom::after {
-    border-left-color: #D500F9;
-    border-right-color: #D500F9;
+    border-left-color: rgba(155, 89, 182,0.5);
+    border-right-color: rgba(155, 89, 182,0.5);
 }
 .physical {
-    background: #D500F9;
+    background: rgba(155, 89, 182,0.5);
 }
 .physical article {
     max-width: 589.6px;
@@ -558,7 +558,7 @@ section .background > .right {
     font-weight: 300;
 }
 .physical .blue {
-    color: #4A148C !important;
+    color: inherit !important;
 }
 
 .escape {
@@ -582,14 +582,14 @@ section .background > .right {
 
 .schedule {
     color: #404040;
-    background-color: #009688;
+    background-color: rgba(231, 76, 60,0.5);
 }
 .schedule_triangle_top {
     margin-top:-140px;   
 }
 .schedule_triangle_top::after, .schedule_triangle_bottom::after {
-    border-left-color: #009688;
-    border-right-color: #009688;
+    border-left-color: rgba(231, 76, 60,0.5);
+    border-right-color: rgba(231, 76, 60,0.5);
 }
 .schedule article {
     max-width: 482.4px;
@@ -628,16 +628,21 @@ section .background > .right {
 /*    max-width: 80vw;  Fix for Firefox and IE */
     max-width: 589.6px; /* Fix for Firefox and IE */
 }
+#sponsors a, #partners a {
+    color: rgba(243, 156, 18,1.0);    
+}
 .sponsors h2 {
-    font-size: 1.2em;
+    font-size: 1.8em;
     font-weight: 300;
-    color: #918f8c;
+    color: #333;
+    text-transform: uppercase;
 }
 .sponsors p {
     margin-top: 1em;
 }
 .sponsors .sponsor-row {
     word-spacing: 50px;
+    text-align: center;
 }
 .sponsor-row a {
     border-bottom: none;
@@ -664,14 +669,14 @@ section .background > .right {
 .faq {
 /*    margin-left: -5px;*/
     color: #404040;
-    background-color:#F44336;
+    background-color:rgba(230, 126, 34,0.5);
 }
 .faq_triangle_top {
     margin-top:-140px;   
 }
 .faq_triangle_top::after, .faq_triangle_bottom::after {
-    border-left-color: #F44336;
-    border-right-color: #F44336;
+    border-left-color: rgba(230, 126, 34,0.5);
+    border-right-color: rgba(230, 126, 34,0.5);
 }
 .faq article {
     max-width: 589.6px;
@@ -685,7 +690,8 @@ section .background > .right {
 .faq article a {
     color: #2196F3;
     color: white;
-    border-bottom: 1px #fff solid;
+    color: rgba(41, 128, 185,1.0);
+    border-bottom: 1px #2196f3 solid;
 }
 
 .faq article a:hover {
