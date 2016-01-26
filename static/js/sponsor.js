@@ -27,10 +27,6 @@ sponsors = {
         logo: "/static/img/sponsor-logos/rowan_ieee.png",
         name: "Rowan IEEE",
         url: "https://rowan.collegiatelink.net/organization/IEEE"
-    }, {
-        logo: "/static/img/sponsor-logos/gourmet.jpg",
-        name: "Gourmet Dining",
-        url: "http://www.rowan.edu/home/gourmet-dining"
     }]},
     sapling: {height: 120,
         sponsors: []},
