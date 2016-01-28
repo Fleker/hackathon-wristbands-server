@@ -21,68 +21,60 @@ The schedule is in a JSON array containing JSON objects for each day.
 schedule = {
     saturday: [{         
         event: "Registation",
-        start_time: "11:00",
-        end_time: "1:00",
+        start_time: "11:00a",
+        end_time: "1:00p",
         description: "Check-in at Rowan Hall, mingle, and get swag. Snacks will be available."
     }, {
-        event: "Introduction",
-        start_time: "1:00",
-        end_time: "2:00",
+        event: "Introduction Ceremony",
+        start_time: "1:00p",
+        end_time: "2:00p",
         description: "Head to the auditorium. There will be overflow in the atrium."
     }, {
-        event: "Lunch",
-        start_time: "12:00",
-        end_time: "1:00",
-        description: "Eat, mingle, and plan your ideas. Sponsored by Gourmet Dining"
-    }, {
         event: "Begin Hacking",
-        start_time: "2:00",
+        start_time: "2:00p",
         description: "Start building cool things. Check out our various technical sessions."
     }, {
         event: "Dinner",
-        start_time: "8:00",
-        end_time: "9:00",
-        description: "Sponsored by Gourmet Dining"
+        start_time: "8:00p",
+        end_time: "9:00p",
+        description: "Brought to you by Gourmet Dining"
     }], sunday: [{
-        event: "Nap time",
-        description: "Sleeping areas will be available in room 304"
-    }, {
         event: "Midnight Snack",
-        start_time: "12:00",
-        end_time: "1:00",
+        start_time: "12:00a",
+        end_time: "1:00a",
         description: "It's a free-for-all"
     }, {
         event: "Late-Night Snack",
-        start_time: "4:00",
-        end_time: "5:00",
+        start_time: "4:00a",
+        end_time: "5:00a",
         description: "Here's something small to get you through the night."
     }, {
         event: "Breakfast",
-        start_time: "8:00",
-        end_time: "9:00",
-        description: "Sponsored by Gourmet Dining"
+        start_time: "8:00a",
+        end_time: "9:00a",
+        description: "Brought to you by Gourmet Dining"
     }, {
         event: "Lunch",
-        start_time: "12:00",
-        end_time: "1:00",
-        description: "Lunch is sponsored by Gourmet Dining"
+        start_time: "12:00p",
+        end_time: "1:00p",
+        description: "Lunch is brought to you by Gourmet Dining"
     }, {
         event: "<b>Project Submissions Due!</b>",
-        start_time: "2:00",
+        start_time: "2:00p",
         description: "Please make sure your submissions are done on time."
     }, {
-        event: "Showcase",
-        start_time: "2:30",
-        end_time: "3:30",
-        description: "Now's the time to demo your project science fair style. Judges will come around."
+        event: "Presentations",
+        start_time: "2:30p",
+        end_time: "3:30p",
+        description: "Now's the time to present your project to everyone. Judges will be watching."
     }, {
         event: "Closing Ceremony",
-        start_time: "4:00",
-        end_time: "6:00",
+        start_time: "4:00p",
+        end_time: "5:00p",
         description: "Keynote, final demos, and winners announced. We will learn who wore it better."
     }, {
         event: "Clean-Up",
-        start_time: "6:00",
+        start_time: "5:00p",
         description: "Clean up. Put everything back. Return hardware to the hardware lab. Say good-bye to your friends."
     }]
 };

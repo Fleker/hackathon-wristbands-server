@@ -47,7 +47,7 @@
     <div class="description">
         {% if  status == "confirmed" %}
         <p>You've already confirmed your attendence!</p>
-        <p>You'll have to email us: <a href="mailto:hello@hackatbrown.org?subject=Cancelling%20My%20Registration">hello@hackatbrown.org</a></p>
+        <p>You'll have to email us: <a href="mailto:team@profhacks.com?subject=Cancelling%20My%20Registration">team@profhacks.com</a></p>
         {% else %}
         <p>Sure you want to cancel your registration?</p>
         <p>There's no going back!</p>
@@ -56,7 +56,7 @@
   </div>
   <div class="actions">
     {% if  status != "confirmed" %}
-    <div class="ui button pink yes">Cancel Registration</div>
+    <div class="ui button pink yes" onclick="mailto:team@profhacks.com?subject=Cancelling%20My%20Registration">Cancel Registration</div>
     {% endif %}
     <div class="ui button no">Nevermind</div>
   </div>

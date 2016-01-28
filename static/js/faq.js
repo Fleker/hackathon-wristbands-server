@@ -24,7 +24,7 @@ faq = [{
     answer: "Uploading your resume is optional. If you are admitted, it will be passed on to sponsors. They are not linked to the application process, which is random."
 }, {
     question: "How much is this going to cost me?",
-    answer: "ProfHacks is entirely free: the food, drinks, escape room, and epic swag are free of charge!."
+    answer: "ProfHacks is entirely free: the food, drinks, and epic swag are free of charge!."
 }, {
     question: "How do I get there?",
     answer: "You could try <a href='http://uber.com'>Uber</a>"
