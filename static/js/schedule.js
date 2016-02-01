@@ -20,7 +20,7 @@ The schedule is in a JSON array containing JSON objects for each day.
 
 schedule = {
     saturday: [{         
-        event: "Registation",
+        event: "Registration",
         start_time: "11:00a",
         end_time: "1:00p",
         description: "Check-in at Rowan Hall, mingle, and get swag. Snacks will be available."
