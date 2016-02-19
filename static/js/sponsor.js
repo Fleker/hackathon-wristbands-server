@@ -32,7 +32,14 @@ sponsors = {
         sponsors: []},
     seedling: {
         height: 80,
-        sponsors: []}
+        sponsors: [{
+	logo: "/static/img/sponsor-logos/plux.png",
+	name: "PLUX",
+	url: "http://www.plux.info"
+	},{
+	logo: "/static/img/sponsor-logos/bitalino.png",
+	name: "BITalino",
+	url: "http://www.bitalino.com"]}
 }
 partners = [{
        
