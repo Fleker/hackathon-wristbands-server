@@ -39,7 +39,12 @@ sponsors = {
 	},{
 	logo: "/static/img/sponsor-logos/bitalino.png",
 	name: "BITalino",
-	url: "http://www.bitalino.com"]}
+	url: "http://www.bitalino.com"
+	},{
+	logo: "static/img/sponsor-logos/backblaze.png",
+	name: "Backblaze",
+	url: "https://www.backblaze.com"
+	}]}
 }
 partners = [{
        
