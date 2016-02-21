@@ -34,6 +34,19 @@ schedule = {
         start_time: "2:00p",
         description: "Start building cool things. Check out our various technical sessions."
     }, {
+        event: "Team Building",
+        start_time: "2:00p",
+        end_time:"3:00p",
+        description: "This event will help participants find teams"
+    }, {
+        event: "Journalism Session",
+        start_time: "3:30p",
+        description: "Learn more about data journalism and how to apply it to your hacks"
+    }, {
+        event: "CloudMine Session",
+        start_time: "5:00p",
+        description: "Learn more about CloudMine and how to leverage their platform in your hacks"
+    }, {
         event: "Dinner",
         start_time: "8:00p",
         end_time: "9:00p",
@@ -43,6 +56,10 @@ schedule = {
         start_time: "12:00a",
         end_time: "1:00a",
         description: "It's a free-for-all"
+    }, {
+        event: "Game Tournament",
+        start_time: "2:00a",
+        description: "We are hosting a Smash 4 tournament in the middle of the night. Don't miss it!"
     }, {
         event: "Late-Night Snack",
         start_time: "4:00a",
