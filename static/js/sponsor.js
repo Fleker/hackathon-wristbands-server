@@ -27,7 +27,11 @@ sponsors = {
         logo: "/static/img/sponsor-logos/rowan_ieee.png",
         name: "Rowan IEEE",
         url: "https://rowan.collegiatelink.net/organization/IEEE"
-    }]},
+	},{
+	logo: "/static/img/sponsor-logos/philly_ieee.jpg",
+	name: "Philly IEEE",
+	url: "https://sites.ieee.org/philadelphia"
+	}]},
     sapling: {height: 120,
         sponsors: []},
     seedling: {
@@ -44,6 +48,34 @@ sponsors = {
 	logo: "static/img/sponsor-logos/backblaze.png",
 	name: "Backblaze",
 	url: "https://www.backblaze.com"
+	},{
+	logo: "static/img/sponsor-logos/plotly.png",
+	name: "Plotly",
+	url: "https://www.plot.ly"
+	},{
+	logo: "static/img/sponsor-logos/ultrapress.png",
+	name: "UltraPress",
+	url: "https://www.ultrapress.com"
+	},{
+	logo: "static/img/sponsor-logos/dottech.jpg",
+	name: ".tech",
+	url: "https://www.get.tech"
+	},{
+	logo: "static/img/sponsor-logos/figma.png",
+	name: "Figma",
+	url: "https://www.figma.com"
+	},{
+	logo: "static/img/sponsor-logos/namecheap.png",
+	name: "Namecheap",
+	url: "https://www.namecheap.com"
+	},{
+	logo: "static/img/sponsor-logos/filestack.png",
+	name: "Filestack",
+	url: "https://www.filestack.com"
+	},{
+	logo: "static/img/sponsor-logos/twilio.png",
+	name: "Twilio",
+	url: "https://www.twilio.com"
 	}]}
 }
 partners = [{

@@ -15,7 +15,7 @@
 
 faq = [{
     question: "Who can attend?",
-    answer: "Any high school, undergraduate and graduate students are welcomed to attend."
+    answer: "Any high school, undergraduate and graduate students are welcome to attend."
 }, {
     question: "How will you decide between applicants?",
     answer: "Applications will be reviewed by committee and selected participants will and be notified via email.  Rowan students are guaranteed acceptance to this event, but will still need to apply."
