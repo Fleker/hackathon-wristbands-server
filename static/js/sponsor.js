@@ -30,7 +30,11 @@ sponsors = {
 	},{
 	logo: "/static/img/sponsor-logos/philly_ieee.jpg",
 	name: "Philly IEEE",
-	url: "https://sites.ieee.org/philadelphia"
+	url: "http://sites.ieee.org/philadelphia"
+	},{
+	logo: "static/img/sponsor-logos/rowan_acm.png",
+	name: "Rowan ACM",
+	url: "http://elvis.rowan.edu/acm"
 	}]},
     sapling: {height: 120,
         sponsors: []},
@@ -76,6 +80,10 @@ sponsors = {
 	logo: "static/img/sponsor-logos/twilio.png",
 	name: "Twilio",
 	url: "https://www.twilio.com"
+	},{
+	logo: "static/img/sponsor-logos/SJTP-logo.png",
+	name: "South Jersey Tech Park",
+	url: "https://sjtechpark.org"
 	}]}
 }
 partners = [{
