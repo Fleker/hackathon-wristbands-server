@@ -4,5 +4,5 @@ from django.conf import settings
 
 def home(request):
     return render(request, "index.html", {
-            'registration_status': 'registration_open',
+            'registration_status': 'registration_closed',
     })
