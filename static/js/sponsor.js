@@ -31,13 +31,25 @@ sponsors = {
 	logo: "/static/img/sponsor-logos/philly_ieee.jpg",
 	name: "Philly IEEE",
 	url: "http://sites.ieee.org/philadelphia"
-	},{
-	logo: "static/img/sponsor-logos/rowan_acm.png",
-	name: "Rowan ACM",
-	url: "http://elvis.rowan.edu/acm"
 	}]},
     sapling: {height: 120,
-        sponsors: []},
+        sponsors: [{
+	logo: "/static/img/sponsor-logos/backblaze.png",
+	name: "Backblaze",
+	url: "https://www.backblaze.com"
+	},{
+	logo: "/static/img/sponsor-logos/cloudmine.png",
+	name: "Cloudmine",
+	url: "http://www.cloudmineinc.com"
+	},{
+	logo: "/static/img/sponsor-logos/honeywell.png",
+	name: "Honeywell",
+	url: "https://www.honeywell.com"
+	},{
+	logo: "/static/img/sponsor-logos/SJTP-logo.png",
+	name: "South Jersey Tech Park",
+	url: "http://sjtechpark.org"
+	}]},
     seedling: {
         height: 80,
         sponsors: [{
@@ -49,10 +61,6 @@ sponsors = {
 	name: "BITalino",
 	url: "http://www.bitalino.com"
 	},{
-	logo: "static/img/sponsor-logos/backblaze.png",
-	name: "Backblaze",
-	url: "https://www.backblaze.com"
-	},{
 	logo: "static/img/sponsor-logos/plotly.png",
 	name: "Plotly",
 	url: "https://www.plot.ly"
@@ -63,7 +71,7 @@ sponsors = {
 	},{
 	logo: "static/img/sponsor-logos/dottech.jpg",
 	name: ".tech",
-	url: "https://www.get.tech"
+	url: "http://www.get.tech"
 	},{
 	logo: "static/img/sponsor-logos/figma.png",
 	name: "Figma",
@@ -81,9 +89,17 @@ sponsors = {
 	name: "Twilio",
 	url: "https://www.twilio.com"
 	},{
-	logo: "static/img/sponsor-logos/SJTP-logo.png",
-	name: "South Jersey Tech Park",
-	url: "https://sjtechpark.org"
+	logo: "static/img/sponsor-logos/myo.png",
+	name: "Myo",
+	url: "https://www.myo.com"
+	},{
+	logo: "/static/img/sponsor-logos/clarifai.png",
+	name: "Clarifai",
+	url: "http://www.clarifai.com"
+	},{
+	logo: "/static/img/sponsor-logos/rowan_acm.png",
+	name: "Rowan ACM",
+	url: "http://elvis.rowan.edu/acm"
 	}]}
 }
 partners = [{
