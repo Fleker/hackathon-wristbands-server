@@ -40,6 +40,9 @@ faq = [{
 }, {
     question: "I have a question that's not answered here; what should I do?",
     answer: 'We’re here for you! Send us an email at <a href="mailto:team@profhacks.com">team@profhacks.com</a> or feel free to reach out to us on <a href="http://twitter.com/profhackathon">Twitter</a>.'
+}, {
+    question: "What hardware will be at the event?",
+    answer: "We will have Intel Edisons, Arduinos, Firephones, Leap Motions, Muse, Oculus harware, Pebble Smart Watches, Sparkcores, Myos, Various Dell Hardware, A Nest Thermostat and Camera, and Various sensors, buttons, and wires."
 }];
 
 function postFAQs() {
