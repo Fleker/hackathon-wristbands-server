@@ -31,6 +31,7 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'rest_framework',   #Rest API
 )
 
 # Apps specific for this project go here.
@@ -77,8 +78,8 @@ FIXTURE_DIRS = (
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
 EMAIL_BACKEND = 'sgbackend.SendGridBackend'
-SENDGRID_USER = env('SENDGRID_USERNAME')
-SENDGRID_PASSWORD = env('SENDGRID_PASSWORD')
+SENDGRID_USER = 'rich'
+SENDGRID_PASSWORD = 'password'
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -96,11 +97,11 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': env('DATABASE_HOST'),
-        'PORT': env('DATABASE_PORT'),
+        'NAME': 'profhacks',
+        'USER': 'menons',
+        'PASSWORD': 'tuxedo94',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 '''

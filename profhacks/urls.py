@@ -21,10 +21,13 @@ from pages.views import home
 
 urlpatterns = [
     url(r'^$', home, name='home'),
-    
+
     # User management
     url(r'^users/', include("users.urls", namespace="users")),
     url(r'^accounts/', include('allauth.urls')),
-    
+
     url(r'^admin/', admin.site.urls),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    url(r'^api/', include('pages.urls')),
 ]

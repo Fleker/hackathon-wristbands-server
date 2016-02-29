@@ -35,3 +35,6 @@ sendgrid-django
 
 # Helpful Model Fields
 django-phonenumber-field
+
+#REST API
+djangorestframework==3.3.2
