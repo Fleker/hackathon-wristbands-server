@@ -5,13 +5,15 @@ from datetime import datetime
 
 # Create your models here.
 
+DEFAULT_REGISTER_ID = 1;
+
 class Register(models.Model):
     id = models.AutoField(primary_key=True)
-    timestamp = models.DateTimeField(auto_now_add=True, blank=True  )
-
+    serial = models.CharField(max_length=20, unique=True, null=False, blank=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 class Event(models.Model):
-    row_num = models.AutoField(primary_key=True)
-    id = models.ForeignKey('Register', on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    register = models.ForeignKey(Register, on_delete=models.CASCADE, default=DEFAULT_REGISTER_ID)
     timestamp = models.DateTimeField(auto_now_add=True)
     message = models.CharField(max_length=255)

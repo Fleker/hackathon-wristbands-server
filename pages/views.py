@@ -21,11 +21,16 @@ class JSONResponse(HttpResponse):
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
 
+@csrf_exempt
 def registration(request):
+    try:
+        register = Register()
+    except:
+        return HttpResponse(status=404)
+
     if request.method == 'POST':
-        reg_id = Register.objects.latest('id').id
-        data = {'id': reg_id + 1}
-        serializer = RegisterSerializer(data=data)
+        data = JSONParser().parse(request);
+        serializer = RegisterSerializer(register, data=data)
         if serializer.is_valid():
             serializer.save()
             return JSONResponse(serializer.data, status=201)
