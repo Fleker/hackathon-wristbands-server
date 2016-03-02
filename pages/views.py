@@ -44,9 +44,14 @@ def list_registration(request):
 
 @csrf_exempt
 def post_event(request):
+    try:
+        event = Event()
+    except:
+        return HttpResponse(status=404)
+
     if request.method == 'POST':
         data = JSONParser().parse(request)
-        serializer = EventSerializer(data=data)
+        serializer = EventSerializer(event, data=data)
         if serializer.is_valid():
             serializer.save()
             return JSONResponse(serializer.data, status=201)
