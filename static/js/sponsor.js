@@ -41,11 +41,11 @@ sponsors = {
 	logo: "/static/img/sponsor-logos/cloudmine.png",
 	name: "Cloudmine",
 	url: "http://www.cloudmineinc.com"
-	}/*,{
-	logo: "/static/img/sponsor-logos/honeywell.png",
-	name: "Honeywell",
-	url: "https://www.honeywell.com"
-	}*/,{
+	},{
+	logo: "/static/img/sponsor-logos/njtc.png",
+	name: "New Jersey Tech Council",
+	url: "http://www.njtc.org"
+	},{
 	logo: "/static/img/sponsor-logos/SJTP-logo.png",
 	name: "South Jersey Tech Park",
 	url: "http://sjtechpark.org"
