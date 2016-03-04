@@ -27,12 +27,80 @@ sponsors = {
         logo: "/static/img/sponsor-logos/rowan_ieee.png",
         name: "Rowan IEEE",
         url: "https://rowan.collegiatelink.net/organization/IEEE"
-    }]},
+	},{
+	logo: "/static/img/sponsor-logos/philly_ieee.jpg",
+	name: "Philly IEEE",
+	url: "http://sites.ieee.org/philadelphia"
+	}]},
     sapling: {height: 120,
-        sponsors: []},
+        sponsors: [{
+	logo: "/static/img/sponsor-logos/backblaze.png",
+	name: "Backblaze",
+	url: "https://www.backblaze.com"
+	},{
+	logo: "/static/img/sponsor-logos/cloudmine.png",
+	name: "Cloudmine",
+	url: "http://www.cloudmineinc.com"
+	},{
+	logo: "/static/img/sponsor-logos/njtc.png",
+	name: "New Jersey Tech Council",
+	url: "http://www.njtc.org"
+	},{
+	logo: "/static/img/sponsor-logos/SJTP-logo.png",
+	name: "South Jersey Tech Park",
+	url: "http://sjtechpark.org"
+	}]},
     seedling: {
         height: 80,
-        sponsors: []}
+        sponsors: [{
+	logo: "/static/img/sponsor-logos/plux.png",
+	name: "PLUX",
+	url: "http://www.plux.info"
+	},{
+	logo: "/static/img/sponsor-logos/bitalino.png",
+	name: "BITalino",
+	url: "http://www.bitalino.com"
+	},{
+	logo: "static/img/sponsor-logos/plotly.png",
+	name: "Plotly",
+	url: "https://www.plot.ly"
+	},{
+	logo: "static/img/sponsor-logos/ultrapress.png",
+	name: "UltraPress",
+	url: "https://www.ultrapress.com"
+	},{
+	logo: "static/img/sponsor-logos/dottech.jpg",
+	name: ".tech",
+	url: "http://www.get.tech"
+	},{
+	logo: "static/img/sponsor-logos/figma.png",
+	name: "Figma",
+	url: "https://www.figma.com"
+	},{
+	logo: "static/img/sponsor-logos/namecheap.png",
+	name: "Namecheap",
+	url: "https://www.namecheap.com"
+	},{
+	logo: "static/img/sponsor-logos/filestack.png",
+	name: "Filestack",
+	url: "https://www.filestack.com"
+	},{
+	logo: "static/img/sponsor-logos/twilio.png",
+	name: "Twilio",
+	url: "https://www.twilio.com"
+	},{
+	logo: "static/img/sponsor-logos/myo.png",
+	name: "Myo",
+	url: "https://www.myo.com"
+	},{
+	logo: "/static/img/sponsor-logos/clarifai.png",
+	name: "Clarifai",
+	url: "http://www.clarifai.com"
+	},{
+	logo: "/static/img/sponsor-logos/rowan_acm.png",
+	name: "Rowan ACM",
+	url: "http://elvis.rowan.edu/acm"
+	}]}
 }
 partners = [{
        

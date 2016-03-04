@@ -15,7 +15,7 @@
 
 faq = [{
     question: "Who can attend?",
-    answer: "Any high school, undergraduate and graduate students are welcomed to attend."
+    answer: "Any high school, undergraduate and graduate students are welcome to attend."
 }, {
     question: "How will you decide between applicants?",
     answer: "Applications will be reviewed by committee and selected participants will and be notified via email.  Rowan students are guaranteed acceptance to this event, but will still need to apply."
@@ -40,6 +40,9 @@ faq = [{
 }, {
     question: "I have a question that's not answered here; what should I do?",
     answer: 'We’re here for you! Send us an email at <a href="mailto:team@profhacks.com">team@profhacks.com</a> or feel free to reach out to us on <a href="http://twitter.com/profhackathon">Twitter</a>.'
+}, {
+    question: "What hardware will be at the event?",
+    answer: "We will have Intel Edisons, Arduinos, Firephones, Leap Motions, Muse, Oculus harware, Pebble Smart Watches, Sparkcores, Myos, Various Dell Hardware, A Nest Thermostat and Camera, and Various sensors, buttons, and wires."
 }];
 
 function postFAQs() {
