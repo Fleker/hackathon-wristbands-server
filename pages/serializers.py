@@ -9,4 +9,4 @@ class RegisterSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id', 'register', 'timestamp', 'message')
+        fields = ('id', 'serial', 'timestamp', 'message')
