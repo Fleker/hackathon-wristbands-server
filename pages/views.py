@@ -8,7 +8,13 @@ from rest_framework.parsers import JSONParser
 
 from pages.models import Register, Event
 from pages.serializers import RegisterSerializer, EventSerializer
+
+import environ
 # Create your views here.
+
+env = environ.Env()
+
+auth_token = env('auth_token')
 
 def home(request):
     return render(request, "index.html", {
@@ -30,6 +36,10 @@ def registration(request):
 
     if request.method == 'POST':
         data = JSONParser().parse(request);
+        if (auth_token != data['auth_token']):
+            return HttpResponse(status=401)
+        else:
+            del data['auth_token']
         serializer = RegisterSerializer(register, data=data)
         if serializer.is_valid():
             serializer.save()
@@ -51,6 +61,10 @@ def post_event(request):
 
     if request.method == 'POST':
         data = JSONParser().parse(request)
+        if (auth_token != data['auth_token']):
+            return HttpResponse(status=401)
+        else:
+            del data['auth_token']
         serializer = EventSerializer(event, data=data)
         if serializer.is_valid():
             serializer.save()

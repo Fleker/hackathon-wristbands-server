@@ -5,8 +5,6 @@ from datetime import datetime
 
 # Create your models here.
 
-DEFAULT_REGISTER_ID = 1;
-
 class Register(models.Model):
     id = models.AutoField(primary_key=True)
     serial = models.CharField(max_length=20, unique=True, null=False, blank=False)
@@ -14,6 +12,5 @@ class Register(models.Model):
 
 class Event(models.Model):
     id = models.AutoField(primary_key=True)
-    register = models.ForeignKey(Register, on_delete=models.CASCADE, default=DEFAULT_REGISTER_ID)
     timestamp = models.DateTimeField(auto_now_add=True)
     message = models.CharField(max_length=255)
