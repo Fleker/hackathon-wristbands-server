@@ -14,7 +14,7 @@ import environ
 
 env = environ.Env()
 
-auth_token = env('auth_token', default="abc123")
+auth_token = env('auth_token')
 
 def home(request):
     return render(request, "index.html", {
