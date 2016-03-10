@@ -12,6 +12,6 @@ class Register(models.Model):
 
 class Event(models.Model):
     id = models.AutoField(primary_key=True)
-    serial = models.CharField(max_length=20, null=False, blank=False)
+    serial = models.CharField(max_length=20, null=False, blank=False, default="00:00:00:00:00:00:00")
     timestamp = models.DateTimeField(auto_now_add=True)
     message = models.CharField(max_length=255)

@@ -36,7 +36,7 @@ def registration(request):
 
     if request.method == 'POST':
         data = JSONParser().parse(request);
-        if (auth_token != data['auth_token']):
+        if (not hasattr(data, 'auth_token') or auth_token != data['auth_token']):
             return HttpResponse(status=401)
         else:
             del data['auth_token']
@@ -61,7 +61,7 @@ def post_event(request):
 
     if request.method == 'POST':
         data = JSONParser().parse(request)
-        if (auth_token != data['auth_token']):
+        if (not hasattr(data, 'auth_token') or auth_token != data['auth_token']):
             return HttpResponse(status=401)
         else:
             del data['auth_token']
