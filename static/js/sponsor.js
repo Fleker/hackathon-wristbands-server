@@ -100,6 +100,10 @@ sponsors = {
 	logo: "/static/img/sponsor-logos/rowan_acm.png",
 	name: "Rowan ACM",
 	url: "http://elvis.rowan.edu/acm"
+	},{
+	logo: "/static/img/sponsor-logos/kloudless.png",
+	name: "Kloudless",
+	url: "http://kloudless.com"
 	}]}
 }
 partners = [{
