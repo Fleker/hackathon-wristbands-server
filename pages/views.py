@@ -9,12 +9,9 @@ from rest_framework.parsers import JSONParser
 from pages.models import Register, Event
 from pages.serializers import RegisterSerializer, EventSerializer
 
-import environ
 # Create your views here.
 
-env = environ.Env()
-
-auth_token = env('auth_token')
+auth_token = 'prof.hacks.2016*(aF3C-d)'
 
 def home(request):
     return render(request, "index.html", {
@@ -29,6 +26,9 @@ class JSONResponse(HttpResponse):
 
 @csrf_exempt
 def registration(request):
+    if not request.body:
+        return HttpResponse(status=400)
+
     try:
         register = Register()
     except:
@@ -54,6 +54,9 @@ def list_registration(request):
 
 @csrf_exempt
 def post_event(request):
+    if not request.body:
+        return HttpResponse(status=400)
+
     try:
         event = Event()
     except:
