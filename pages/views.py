@@ -79,3 +79,6 @@ def list_events(request):
         event = Event.objects.all()
         serializer = EventSerializer(event, many=True)
         return JSONResponse(serializer.data)
+
+def api_info(request):
+    return render(request,"api.html")

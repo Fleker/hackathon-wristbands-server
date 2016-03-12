@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>ProfHacks 2016 Recommended APIs</title>
+  {% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/api.css' %}">
+</head>
+<body>
+<div id="panels" class="panels">
+  <section class="panel triangle">
+    <div class='triangle_bottom_right meta_triangle_top'></div>
+    <div class="foreground content_container meta">
+      <div>
+	<article id='meta'>
+	  <h1>ProfHacks 2016 Recommended APIs</h1>
+	  <p>There numerous different APIs that given you many different possibilities. We have create a small list of APIs (including our own) that either links or describes each one.</p>
+	  <h3>Some that we recomend are:</h3>
+	  <ul>
+	    <li><a href="http://www.twillio.com/api" target="_blank">Twillio</a>
+	      <ul><li>We have API keys at the Info Desk</li></ul></li>
+	    <li><a href="https://developers.kloudless.com/docs/latest" target="_blank">Kloudless</a>
+	    <ul><li>We have API keys at the Info Desk</li></ul></li>
+	    <li><a href="https://developer.clarifai.com/" target="_blank">Clarifai</a>
+	    <ul><li>We have API keys at the Info Desk</li></ul></li>
+	    <li><b>Live ProfHacks Data</b>
+	      <ul>
+		<li>Using wristbands we gave out at registration we are creating a live data set during ProfHack</li>
+		<li>All data is anonymous</li>
+		<li><a href="/api/get/registration/all/" target="_blank">View Registration Data</a>
+		  <ul>
+		    <li>
+		      GET Method
+		    </li>
+		    <li>
+		      When registering for ProfHacks, each individual is required to sign in using their given NFC tag. When doing this,
+		      our application records their serial number as well as their time of registration.
+		    </li>
+		    <li>
+		      <b>JSON Format</b><br>
+		      [<br>
+		       &nbsp;&nbsp;&nbsp;&nbsp; {<br>
+		         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "id":<i>Integer</i>,<br>
+		         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "serial":"NFC Tag Serial Number",<br>
+		         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "timestamp":"Time of Registration"<br>
+		       &nbsp;&nbsp;&nbsp;&nbsp; },{...},...<br>
+		      ]
+		    </li>
+		  </ul>
+		</li>
+		<li><a href="/api/get/event/all/" target="_blank">View Event Data</a>
+		<ul>
+		    <li>
+		      GET Method
+		    </li>
+                    <li>
+                      When participating in ProfHacks events, each individual will scan in using their given NFC tag. When doing this,
+                      our application records their serial number, time of check-in, and the event they are attending.
+		      <br />
+		      <br />
+		      <b>The events we will be recording are: </b>
+		      <ul>
+			<li>Opening Ceremony</li>
+			<li>Team-building Session</li>
+			<li>Journalism Session</li>
+			<li>CloudMine Session</li>
+			<li>Dinner</li>
+			<li>Midnight Snack</li>
+			<li>Game Tournament</li>
+			<li>Late-Night Snack</li>
+			<li>Breakfast</li>
+			<li>Lunch</li>
+		      </ul>
+                    </li>
+                    <li>
+                      <b>JSON Format</b><br>
+                      [<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp; {<br>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "id":<i>Integer</i>,<br>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "serial":"NFC Tag Serial Number",<br>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "timestamp":"Time of check in to event",<br>
+		         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "message":"Attended Event"<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp; },{...},...<br>
+                      ]
+                    </li>
+                  </ul>
+		</li>
+		<li>All timestamps are 5 hours ahead of EST</li>
+	      </ul>
+	    </li>
+	    <li><a href="http://www.filestack.com/docs/" target="_blank">Filestack</a></li>
+	    <li><a href="http://plot.ly/api/" target="_blank">Plotly</a></li>
+	    <li><a href="http://www.bitalino.com/index.php/development/apis/" target="_blank">Bitalino</a></li>
+	    <li><a href="http://developer.thalmic.com" target="_blank">Myo</a></li>
+	  </ul>
+        </article>
+    </div>
+  </div>
+  </div>
+ </section>
+</div>
+</body>
+</html>
