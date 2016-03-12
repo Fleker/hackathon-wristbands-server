@@ -3,10 +3,27 @@
 <head>
   <title>ProfHacks 2016 Recommended APIs</title>
   {% load staticfiles %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/api.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 </head>
-<body>
-<div id="panels" class="panels">
+<body style="background-color: #5CCC71">
+<style>
+a{
+    color: blue;
+    text-decoration-color: blue
+}
+</style>
+<div id="skrollr-body" class="container">
+
+    <section id='hero' class="splash panel">
+        <div class="double">
+            <div class="double_left">
+                <div class='logo'></div>
+                <div class='title'>ProfHacks API</div>
+            </div>
+        </div>
+        <canvas id="hero_canvas"></canvas>
+    </section>
+<div id="panels" class="panels" style="width: 100%">
   <section class="panel triangle">
     <div class='triangle_bottom_right meta_triangle_top'></div>
     <div class="foreground content_container meta">
@@ -168,6 +185,7 @@
   </div>
   </div>
  </section>
+</div>
 </div>
 </body>
 </html>
